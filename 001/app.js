@@ -26,3 +26,18 @@ for (let i = 0; i < 22; i++) {
 }
 
 console.log(sum2);
+
+
+let sum3 = 0;
+
+for (let i = 0; i < 22; i++) {
+
+    const randomDigit = rand(1, 6); // tik del aiskumo
+    if (randomDigit % 2 === 0) {
+        sum3 = sum3 + randomDigit;
+    }
+
+    // sum2 += randomDigit;
+}
+
+console.log(sum3);
