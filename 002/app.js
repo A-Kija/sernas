@@ -32,9 +32,9 @@ console.log(li);
 
 // li.forEach(element => console.log(element.innerText));
 
-li.forEach((element) => {
+li.forEach((element, i) => {
     element.style.color = 'red';
-    console.log(element.innerText);
+    console.log(element.innerText, i);
 });
 
 console.log(ul.children);
@@ -42,3 +42,23 @@ console.log(ul.children);
 // ul.children.forEach(a => a);
 
 // li.style.color = 'brown';
+
+
+const animals = document.querySelectorAll('.animal-list h2');
+
+animals.forEach((element) => {
+    element.style.color = 'green';
+});
+
+
+animals.forEach((element, i) => {
+    if (i % 2) {
+        element.style.color = 'yellow';
+    } else {
+        element.style.color = 'yellow';
+    }
+
+    // element.style.color = i % 2 ? 'yellow' : 'blue';
+
+
+});
