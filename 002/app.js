@@ -55,7 +55,7 @@ animals.forEach((element, i) => {
     if (i % 2) {
         element.style.color = 'yellow';
     } else {
-        element.style.color = 'yellow';
+        element.style.color = 'blue';
     }
 
     // element.style.color = i % 2 ? 'yellow' : 'blue';
