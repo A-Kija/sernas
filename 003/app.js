@@ -8,7 +8,8 @@ function rand(min, max) {
 const bb = document.querySelector('#bb');
 
 
-bb.addEventListener('click', () => {
+bb.addEventListener('click', e => {
+    e.stopPropagation(); // evento stabdymas
     console.log('Valio!!!');
 });
 
@@ -20,13 +21,12 @@ bb.addEventListener('mouseout', () => {
     console.log('Pelė išeina');
 });
 
-
 const list = document.querySelectorAll('.animal-list h2');
 
-
 list.forEach(animal => {
-    animal.addEventListener('click', () => {
-        console.log(animal.innerText, 'Valio!!!');
+    animal.addEventListener('click', e => {
+        console.log(e.target.innerText, 'Valio!!!');
+        console.log(e.target);
     });
 
     animal.addEventListener('mouseover', () => {
@@ -36,6 +36,14 @@ list.forEach(animal => {
     animal.addEventListener('mouseout', () => {
         console.log(animal.innerText, 'Pelė išeina');
     });
+});
+
+
+const bd = document.querySelector('.bd');
+
+
+bd.addEventListener('click', () => {
+    bd.style.backgroundColor = 'red';
 });
 
 
