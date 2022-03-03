@@ -18,7 +18,7 @@ rabbit.style.backgroundColor = 'blue';
 console.log(rabbit);
 
 const bars = document.querySelector('h2 + h2');
-bars.style.color = 'brown';
+bars.style.color = '#ff0000';
 
 
 const li = document.querySelectorAll('li');
@@ -57,8 +57,5 @@ animals.forEach((element, i) => {
     } else {
         element.style.color = 'blue';
     }
-
     // element.style.color = i % 2 ? 'yellow' : 'blue';
-
-
 });
