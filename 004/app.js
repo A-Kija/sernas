@@ -6,7 +6,7 @@ function rand(min, max) {
 
 const namas1 = ['Vytas', 'Aiste', 'Bebras'];
 
-console.log('Bebras:', namas1[2]);
+// console.log('Bebras:', namas1[2]);
 
 const namas2 = [
     ['Vytas', 'Lina'],
@@ -14,17 +14,15 @@ const namas2 = [
     ['Bebras', 'Žirafa']
 ];
 
-console.log('Bebras:', namas2[2][0]);
+// console.log('Bebras:', namas2[2][0]);
 
-console.table(namas2);
-console.log('namo aukštis: ', namas2.length);
+// console.table(namas2);
+// console.log('namo aukštis: ', namas2.length);
 
 const hause1 = [];
 for (let i = 0; i < 11; i++) {
     hause1.push(rand(5, 25));
 }
-
-
 
 
 const hause2 = [];
@@ -40,6 +38,20 @@ for (let i = 0; i < 11; i++) {
     hause2.push(floor);
 }
 
-
-
+console.table(hause1);
 console.table(hause2);
+
+for (let i = 0; i < hause1.length; i++) {
+    console.log(hause1[i]); // i -> 0, 1, 2... 9, 10
+}
+
+// hause1.forEach();
+// hause1.forEach((el) => {});
+// hause1.forEach((el) => {
+
+// });
+console.table('-------');
+// hause1.forEach(el => console.log(el));
+hause1.forEach(el => {
+    console.log(el);
+});
