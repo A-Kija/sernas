@@ -50,8 +50,31 @@ for (let i = 0; i < hause1.length; i++) {
 // hause1.forEach((el) => {
 
 // });
-console.table('-------');
+console.table('-------------------------------');
 // hause1.forEach(el => console.log(el));
 hause1.forEach(el => {
     console.log(el);
+});
+
+console.table('-------------------------------');
+for (let i = 0; i < hause2.length; i++) {
+
+    for (let k = 0; k < hause2[i].length; k++) {
+
+        console.log(hause2[i][k]); // i -> 0, 1, 2... 9, 10
+
+    }
+
+}
+console.table('-------------------------------');
+
+// lipame per aukstus
+hause2.forEach(floor => {
+    // gauname auksta
+    // tada lipame per aukstus
+    floor.forEach(flat => {
+        // gauname butus
+        console.log(flat);
+    });
+
 });
