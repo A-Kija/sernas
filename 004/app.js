@@ -23,4 +23,23 @@ const hause1 = [];
 for (let i = 0; i < 11; i++) {
     hause1.push(rand(5, 25));
 }
-console.table(hause1);
+
+
+
+
+const hause2 = [];
+for (let i = 0; i < 11; i++) {
+
+    // aukstas
+    const floor = [];
+    for (let k = 0; k < 2; k++) {
+        floor.push(rand(5, 25));
+    }
+    // aukstas
+
+    hause2.push(floor);
+}
+
+
+
+console.table(hause2);
