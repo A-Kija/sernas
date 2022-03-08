@@ -67,10 +67,35 @@ console.log(cats[rand(0, cats.length - 1)]);
 
 const ft = !rand(0, 1);
 
+// gamina katino objekta
 const cat = {};
-cat.name = cats[rand(0, cats.length - 1)];
+cat.name = 'Murka';
 cat.pills = {};
 cat.pills.blue = !rand(0, 1);
 cat.pills.red = !rand(0, 1);
+//
+
+const cat2 = cat;
+
+cat2.name = 'Rainius';
 
 console.log(cat);
+console.log(cat2);
+
+const vetClinic = [];
+for (let i = 0; i < 20; i++) {
+    // gamina katino objekta
+    const cat = {};
+    cat.name = cats[rand(0, cats.length - 1)];
+    cat.pills = {};
+    cat.pills.blue = !rand(0, 1);
+    cat.pills.red = !rand(0, 1);
+    //
+    vetClinic.push(cat);
+}
+
+let murkos = 0;
+vetClinic.forEach(cat => murkos = cat.name == 'Murka' ? murkos + 1 : murkos);
+
+console.log(vetClinic);
+console.log(murkos);
