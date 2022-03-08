@@ -27,3 +27,14 @@ for (let i = 0; i < namas1.gyventojai.length; i++) {
 }
 
 namas1.gyventojai.forEach(g => console.log(g));
+
+const arr = [];
+
+for (let i = 0; i < 7; i++) {
+    const random = rand(1, 6);
+    const obj = {};
+    obj.number = random;
+    arr.push(obj);
+}
+
+console.log(arr);
