@@ -63,3 +63,14 @@ console.log(arr1);
 const cats = ['Murka', 'Juodis', 'Kakalius', 'Meilutė', 'Pifas', 'Rainius'];
 
 console.log(cats[rand(0, cats.length - 1)]);
+
+
+const ft = !rand(0, 1);
+
+const cat = {};
+cat.name = cats[rand(0, cats.length - 1)];
+cat.pills = {};
+cat.pills.blue = !rand(0, 1);
+cat.pills.red = !rand(0, 1);
+
+console.log(cat);
