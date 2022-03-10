@@ -1,3 +1,9 @@
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 let suma = 0;
 
 suma = 0.1 + 0.2;
@@ -61,3 +67,15 @@ button.addEventListener('click', () => {
 
 // const items = {...localStorage };
 // console.log(items);
+
+const arr33 = [];
+
+for (let i = 0; i < 33; i++) {
+    arr33.push(rand(1, 33));
+}
+
+console.log(arr33);
+
+localStorage.setItem('hi33', JSON.stringify(arr33));
+
+console.log(JSON.parse(localStorage.getItem('hi33')));
