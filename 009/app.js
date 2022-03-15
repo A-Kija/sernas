@@ -66,3 +66,39 @@ lape.run(100);
 
 console.log(lape);
 console.log(meska);
+
+
+class Kibiras1 {
+
+    constructor() {
+        this.akmenuKiekis = 0;
+    }
+
+    prideti1Akmeni() {
+        this.akmenuKiekis++;
+    }
+
+    pridetiDaugAkmenu(kiekis) {
+        this.akmenuKiekis += kiekis;
+    }
+
+    kiekPririnktaAkmenu() {
+        console.log(`O va tiek: ${this.akmenuKiekis} yra pririnkta akmenų`);
+    }
+
+}
+
+
+const k1 = new Kibiras1();
+
+k1.prideti1Akmeni();
+
+k1.kiekPririnktaAkmenu();
+
+k1.pridetiDaugAkmenu(10);
+
+k1.kiekPririnktaAkmenu();
+
+k1.prideti1Akmeni();
+
+k1.kiekPririnktaAkmenu();
