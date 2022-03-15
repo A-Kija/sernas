@@ -83,7 +83,9 @@ class Kibiras1 {
     }
 
     kiekPririnktaAkmenu() {
-        console.log(`O va tiek: ${this.akmenuKiekis} yra pririnkta akmenų`);
+        console.log(`O va tiek: 
+        ${this.akmenuKiekis}
+        yra pririnkta akmenų`);
     }
 
 }
