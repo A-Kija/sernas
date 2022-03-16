@@ -102,3 +102,21 @@ console.log(simas);
 console.log(rimas);
 console.log(bimas);
 console.log('Liko: ', Anukas.senelioPalikimas);
+
+
+class Zveris {
+    static miskas = [];
+
+    constructor(r) {
+        this.rusis = r;
+        this.constructor.miskas.push(this);
+    }
+}
+
+const z1 = new Zveris('Baubas');
+
+const z2 = new Zveris('Tigras');
+
+const z3 = new Zveris('Triušis');
+
+console.log(Zveris.miskas);
