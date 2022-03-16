@@ -47,6 +47,15 @@ class Anukas {
         }
     }
 
+    paimtiIsSenelio() {
+        if (Anukas.senelioPalikimas != 0) {
+            Anukas.senelioPalikimas -= 2000;
+            this.pinigai += 2000;
+        } else {
+            console.log('PALIKIMAS IŠTAŠKYTAS - EIKIT DIRBT!');
+        }
+    }
+
     rand(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -63,6 +72,16 @@ simas.isleisti();
 simas.isleisti();
 
 rimas.isleisti();
+
+rimas.isleisti();
+
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+
+simas.paimtiIsSenelio();
+rimas.paimtiIsSenelio();
 
 console.log(simas);
 console.log(rimas);
