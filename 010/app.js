@@ -34,8 +34,12 @@ obj1.changeCount(100);
 class Anukas {
     static senelioPalikimas = 10000; // Eur
 
+    static mokesciuInspekcija() {
+        this.senelioPalikimas = 0; // this ==> klase Anukas
+    }
+
     constructor() {
-        this.pinigai = this.rand(1000, 2000);
+        this.pinigai = this.rand(1000, 2000); // this ==> objektas simas, rimas ir t.t.
     }
 
     isleisti() {
@@ -75,6 +79,8 @@ rimas.isleisti();
 
 rimas.isleisti();
 
+Anukas.mokesciuInspekcija();
+
 bimas.paimtiIsSenelio();
 bimas.paimtiIsSenelio();
 bimas.paimtiIsSenelio();
@@ -83,8 +89,8 @@ bimas.paimtiIsSenelio();
 simas.paimtiIsSenelio();
 rimas.paimtiIsSenelio();
 
-const mociutesPalikimas = 20000;
-Anukas.senelioPalikimas = mociutesPalikimas;
+// const mociutesPalikimas = 20000;
+// Anukas.senelioPalikimas = mociutesPalikimas;
 
 bimas.paimtiIsSenelio();
 bimas.paimtiIsSenelio();
