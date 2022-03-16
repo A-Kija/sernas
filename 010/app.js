@@ -52,8 +52,8 @@ class Anukas {
     }
 
     paimtiIsSenelio() {
-        if (Anukas.senelioPalikimas != 0) {
-            Anukas.senelioPalikimas -= 2000;
+        if (this.constructor.senelioPalikimas != 0) { //this.constructor === Anukas
+            this.constructor.senelioPalikimas -= 2000;
             this.pinigai += 2000;
         } else {
             console.log('PALIKIMAS IŠTAŠKYTAS - EIKIT DIRBT!');
