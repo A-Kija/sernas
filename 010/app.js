@@ -107,6 +107,10 @@ console.log('Liko: ', Anukas.senelioPalikimas);
 class Zveris {
     static miskas = [];
 
+    static naujasZveris(r) {
+        return new this(r);
+    }
+
     constructor(r) {
         this.rusis = r;
         this.constructor.miskas.push(this);
@@ -118,5 +122,9 @@ const z1 = new Zveris('Baubas');
 const z2 = new Zveris('Tigras');
 
 const z3 = new Zveris('Triušis');
+
+const z4 = Zveris.naujasZveris('Vilkas');
+
+console.log(z4);
 
 console.log(Zveris.miskas);
