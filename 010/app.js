@@ -83,6 +83,15 @@ bimas.paimtiIsSenelio();
 simas.paimtiIsSenelio();
 rimas.paimtiIsSenelio();
 
+const mociutesPalikimas = 20000;
+Anukas.senelioPalikimas = mociutesPalikimas;
+
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+bimas.paimtiIsSenelio();
+
 console.log(simas);
 console.log(rimas);
 console.log(bimas);
