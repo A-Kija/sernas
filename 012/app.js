@@ -82,3 +82,62 @@ K.idetiPieno(8);
 K.idetiPieno(8);
 
 K.krepselioTurinys();
+
+
+const set = new Set();
+
+const z = { t: 'Tankas' };
+const z1 = z;
+const z2 = z1;
+
+set.add('Dramblys');
+set.add('Šluota');
+set.add('Tankas');
+set.add(z);
+set.add(z);
+set.add(z1);
+set.add(z2);
+set.add('Šluota');
+set.add('Dramblys');
+set.add({ s: 'Šluota' });
+set.add({ s: 'Šluota' });
+set.add({ s: 'Šluota' });
+
+set.clear();
+set.delete({ s: 'Šluota' });
+
+console.log(set);
+
+// String.prototype.bum = function() {
+//     return this.valueOf() + ' BUM!';
+// }
+
+const abc = 'Tankas';
+
+const abc1 = 'Šluota';
+
+
+String.prototype.bum = function() {
+    return this.valueOf() + ' BUM!';
+}
+
+
+console.log(abc1.bum());
+
+const ti = document.querySelector('#ti');
+const ci = document.querySelector('#ci');
+const b = document.querySelector('button');
+
+Element.prototype.getVal = function() {
+    if (this.hasAttribute('type') && this.getAttribute('type') == 'checkbox') {
+        if (this.checked) {
+            return this.value;
+        }
+        return '';
+    }
+    return this.value;
+}
+
+b.addEventListener('click', () => {
+    console.log(ti.getVal(), ci.getVal());
+})
