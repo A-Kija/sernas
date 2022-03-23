@@ -1,6 +1,6 @@
-function Zveris({type}) {
+function Zveris({type, msg}) {
     return (
-        <h2>{type}</h2>
+        <h2>{type} {msg || ''}</h2>
     )
 }
 

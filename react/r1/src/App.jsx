@@ -5,8 +5,8 @@ function App() {
   return (
     <div className="App">
         <h1>PROPS</h1>
-        <Miskas forest="blue" big={true}></Miskas>
-        <Miskas forest="red" big={false}></Miskas>
+        <Miskas forest="blue" big={true} msg="Alio"></Miskas>
+        <Miskas forest="red" big={false} msg="Super"></Miskas>
     </div>
   );
 }
