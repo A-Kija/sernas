@@ -1,10 +1,15 @@
+import AutoGood from "./AutoGood"
+
 export default function Auto({auto}) {
-    return (
-        <>
-        <h3 style={{
-            color: auto.color
-        }}>{auto.type}</h3>
-        <span>{auto.price * 90} RUB</span>
-        </>
-    )
+    if (auto.type != 'MB') {
+        return (
+        <AutoGood auto={auto}></AutoGood>
+        )
+    } else {
+        return (
+            <h3>
+            {auto.type} yra surudijusi gelda
+            </h3>
+        )
+    }
 }

@@ -6,9 +6,7 @@ export default function Garazas({autos}) {
         <>
         {
             autos.map((auto, i) => <Auto key={i} auto={auto}></Auto>)
-            
         }
-
         </>
     )
 }
