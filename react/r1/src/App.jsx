@@ -1,12 +1,18 @@
 import './App.css';
-import Miskas from './Components/Miskas';
+import Garazas from './Components/Garazas';
+
+const autoList = [
+    {type: 'Volvo', color: 'blue', price: '78000'},
+    {type: 'MB', color: 'green', price: '20000'},
+    {type: 'Audi', color: 'black', price: '93000'},
+    {type: 'Kamaz', color: 'orange', price: '178000'}
+]
 
 function App() {
   return (
     <div className="App">
-        <h1>PROPS</h1>
-        <Miskas forest="blue" big={true} msg="Alio"></Miskas>
-        <Miskas forest="red" big={false} msg="Super"></Miskas>
+        <h1>LISTS</h1>
+        <Garazas autos={autoList}></Garazas>
     </div>
   );
 }

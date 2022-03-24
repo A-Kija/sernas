@@ -2,7 +2,7 @@ import Zveris from "./Zveris";
 
 function Miskas({big, forest, msg}) {
 
-    const getBig = big => big ? '20px' : '10px';
+    const getBig = big1 => big1 ? '20px' : '10px';
         
     return (
         <div>
