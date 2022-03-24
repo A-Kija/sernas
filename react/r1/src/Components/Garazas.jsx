@@ -5,13 +5,10 @@ export default function Garazas({autos}) {
     return (
         <>
         {
-            autos.map((auto, i) => <Auto key={i} type={auto}></Auto>)
+            autos.map((auto, i) => <Auto key={i} auto={auto}></Auto>)
             
         }
-        {
-            autos.map((auto, i) => <Auto key={i} type={auto}></Auto>)
-            
-        }
+
         </>
     )
 }
