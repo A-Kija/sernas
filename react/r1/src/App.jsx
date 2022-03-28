@@ -5,14 +5,14 @@
 //     {name: 'Bijūnas', color: 'red'},
 //     {name: 'Alyva', color: 'orange'},
 // ]
-
+import './App.css';
 import Circle from "./Components/Circle";
 
 function App() {
   return (
     <div className="App">
         <h1>CLASS</h1>
-        <Circle></Circle>
+        <Circle size="200px"></Circle>
     </div>
   );
 }
