@@ -1,18 +1,11 @@
-// const gelytes = [
-//     {name: 'Tulpė', color: 'red'},
-//     {name: 'Gvazdikas', color: 'yellow'},
-//     {name: 'Raktelis', color: 'blue'},
-//     {name: 'Bijūnas', color: 'red'},
-//     {name: 'Alyva', color: 'orange'},
-// ]
 import './App.css';
-import Circle from "./Components/Circle";
+import Kv from './Components/Kv';
 
 function App() {
   return (
     <div className="App">
-        <h1>CLASS</h1>
-        <Circle size="200px"></Circle>
+      <h1>Bla</h1>
+        <Kv/>
     </div>
   );
 }
