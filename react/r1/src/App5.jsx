@@ -1,12 +1,11 @@
 import './App.css';
-import Pasaka from './Components/Pasaka';
+import Kv from './Components/Kv';
 
 function App() {
-
   return (
     <div className="App">
-        <h1>HOOK</h1>
-        <Pasaka></Pasaka>
+      <h1>Bla</h1>
+        <Kv/>
     </div>
   );
 }

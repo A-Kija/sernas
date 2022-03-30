@@ -1,11 +1,21 @@
-function Kv2({elements}) {
-    return(
+import { Component } from "react";
+import Kv3 from "./Kv3";
+
+class Kv2 extends Component{
+
+    constructor(props) {
+        super();
+    }
+
+
+    render() {return(
         <>
         {
-            elements.map((e, i) => <h1 key={i} style={{color:'#' + e}}>KV</h1>)
+            this.props.elements.map((e, i) => <Kv3 key={i} color={e}></Kv3>)
         }
         </>
     )
+    }
 }
 
 export default Kv2;
