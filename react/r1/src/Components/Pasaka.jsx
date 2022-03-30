@@ -3,7 +3,7 @@ import {useState} from 'react';
 function Pasaka() {
 
     const [title, setTitle] = useState('non');
-    // const [title1, setTitle1] = useState('non');
+    const [color, setColor] = useState('pink');
 
     // const bla = 5;BLOGIS
 
@@ -15,11 +15,19 @@ function Pasaka() {
         setTitle('3 Broliai');
     }
 
+    const goColor = c => {
+        setColor(c);
+    }
+
+
+
     return (
         <div>
-            <h2>PASAKA {title}</h2>
+            <h2 style={{color:color}}>PASAKA {title}</h2>
             <button onClick={goBebrai}>Apie Bebrus</button>
             <button onClick={goTrysBroliai}>3 Broliai</button>
+            <button onClick={() => goColor('pink')}>Pink</button>
+            <button onClick={() => goColor('blue')}>Blue</button>
         </div>
     );
     
