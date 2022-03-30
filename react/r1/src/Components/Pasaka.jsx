@@ -19,6 +19,12 @@ function Pasaka() {
         setColor(c);
     }
 
+    const changeColor = () => {
+        // const newColor = color == 'blue' ? 'pink' : 'blue';
+        // setColor(newColor);
+        setColor(oldColor => oldColor == 'blue' ? 'pink' : 'blue');
+    }
+
 
 
     return (
@@ -28,6 +34,7 @@ function Pasaka() {
             <button onClick={goTrysBroliai}>3 Broliai</button>
             <button onClick={() => goColor('pink')}>Pink</button>
             <button onClick={() => goColor('blue')}>Blue</button>
+            <button onClick={changeColor}>Change</button>
         </div>
     );
     
