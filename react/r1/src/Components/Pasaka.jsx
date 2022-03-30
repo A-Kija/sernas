@@ -12,7 +12,7 @@ function Pasaka() {
     }
 
     const goTrysBroliai = () => {
-        setTitle('3 Broliai');
+        setTitle('3 Broliai'); // įrašymas
     }
 
     const goColor = c => {
