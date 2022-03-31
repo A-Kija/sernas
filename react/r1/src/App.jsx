@@ -1,14 +1,12 @@
 import './App.css';
-import MelynasisKvadratelis from './Components/MelynasisKvadratelis';
-import Pasaka from './Components/Pasaka';
+import Form from './Components/Form';
 
 function App() {
 
   return (
     <div className="App">
-        <h1>HOOK</h1>
-        <Pasaka></Pasaka>
-        <MelynasisKvadratelis></MelynasisKvadratelis>
+        <h1>Forms</h1>
+        <Form></Form>
     </div>
   );
 }
