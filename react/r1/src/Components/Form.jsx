@@ -11,6 +11,9 @@ function Form() {
 
     const [dont, setDont] = useState(true);
 
+    const [checkbox, setCheckbox] = useState('');
+    const [radio, setRadio] = useState('');
+
     const changeText1 = e => {
         if (e.target.value.length > 10) {
             return;
@@ -43,6 +46,21 @@ function Form() {
         setSelectT(e.target.querySelector('[value=' + e.target.value + ']').innerText);
     }
 
+    const changeCheckbox = e => {
+        setCheckbox(e.target.checked ? e.target.value : '');
+    }
+
+    const changeRadio = e => {
+        setRadio(e.target.value);
+    }
+
+    const changeRadio1 = e => {
+        e.target.setAttribute('checked', true);
+        console.log(e.target.value);
+    }
+
+
+
     return (
         <>
             <input type="text" placeholder="bla" onChange={changeText1} value={text1}/>
@@ -69,9 +87,18 @@ function Form() {
                 <option value="nezinau">Nežinau</option>
             </select>
             <h2>{selectT}</h2>
-        
-        
-        
+
+            <input type="checkbox" onChange={changeCheckbox} value="Pirmyn" />
+
+            <h3>-{checkbox}-</h3>
+
+            {/* <div onChange={changeRadio}> */}
+            <input type="radio" onChange={changeRadio1} name="tas_pat" value="Jo" />Jo
+            <input type="radio" onChange={changeRadio1} name="tas_pat" value="Ne" defaultChecked/>Ne
+            <input type="radio" onChange={changeRadio1} name="tas_pat" value="Nesakysiu" />Nesakysiu
+            {/* </div> */}
+
+            <h3>-{radio}-</h3>
         </>
         
     )
