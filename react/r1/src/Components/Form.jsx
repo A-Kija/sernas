@@ -5,6 +5,7 @@ function Form() {
     const [text1, setText1] = useState('');
     const [volume, setVolume] = useState(0);
     const [color, setColor] = useState('#ff0000');
+    const [ta, setTa] = useState('---------');
 
     const changeText1 = e => {
         setText1(e.target.value);
@@ -16,6 +17,10 @@ function Form() {
 
     const changeColor = e => {
         setColor(e.target.value);
+    }
+
+    const changeTa = e => {
+        setTa(e.target.value);
     }
 
     return (
@@ -33,6 +38,7 @@ function Form() {
                 background: color,
                 margin: '100px'
             }}></div>
+            <textarea value={ta} onChange={changeTa}></textarea>
         </>
     )
 }
