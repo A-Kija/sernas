@@ -3,6 +3,7 @@ import SkaiciusMygtukas from './Components/SkaiciusMygtukas';
 import { useState } from "react"
 import SkaiciusH2 from './Components/SkaiciusH2';
 
+
 function App() {
 
     const [sk, setSk] = useState(0);

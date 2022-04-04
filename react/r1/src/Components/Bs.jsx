@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
-function Bs({sk}) {
+
+function Bs({sk, rand}) {
 
     useEffect(()=> {
         console.log('SK ', sk + 1);
@@ -9,11 +10,14 @@ function Bs({sk}) {
         }
     }, []);
 
+    
     // console.log('SK ', sk);
 
 
     return (
+        <>
         <div className="BS" >{sk + 1}</div>
+        </>
     )
 }
 
