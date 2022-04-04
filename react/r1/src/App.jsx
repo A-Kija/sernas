@@ -1,12 +1,13 @@
 import './App.css';
-import Form from './Components/Form';
+import SkaiciusMygtukas from './Components/SkaiciusMygtukas';
 
 function App() {
-
   return (
     <div className="App">
-        <h1>Forms</h1>
-        <Form></Form>
+      <h1>STaTE UPLiFTINg</h1>
+
+        <SkaiciusMygtukas></SkaiciusMygtukas>
+
     </div>
   );
 }
