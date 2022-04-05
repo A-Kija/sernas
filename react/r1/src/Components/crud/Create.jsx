@@ -4,7 +4,7 @@ function Create({create}) {
 
     const [type, setType] = useState('');
     const [color, setColor] = useState('');
-    const [isalive, setIsalive] = useState(0);
+    const [isalive, setIsalive] = useState(1);
 
     const handleCreate = () => {
         const data = {
@@ -23,8 +23,8 @@ function Create({create}) {
             case 'color':
                 setColor(e.target.value);
                 break;
-            case isalive:
-                setIsalive(i => !i);
+            case 'isalive':
+                setIsalive(i => i == 0 ? 1 : 0);
                 break;
             default:
         }
@@ -33,7 +33,10 @@ function Create({create}) {
 
     return (
         <div className="create">
+            <div className="header">
             <h2>Create</h2>
+            </div>
+            
             <div className="form">
 
                 <div className="input">
@@ -53,12 +56,12 @@ function Create({create}) {
                 </div>
 
                 <div className="input">
-                <label>Is alive</label>
-                <input type="checkbox" onChange={(e) => handleInput(e, 'isalive')}></input>
+                <label>Is alive:</label>
+                <input type="checkbox" checked={!!isalive} onClick={(e) => handleInput(e, 'isalive')}></input>
                 </div>
 
                 <div className="input btn">
-                <button onClick={handleCreate}>create</button>
+                <button className="add" onClick={handleCreate}>create</button>
                 </div>
             
             </div>

@@ -2,7 +2,9 @@ function Read({zoo}) {
 
     return (
         <div className="read">
-            <h2>List</h2>
+            <div className="header">
+                <h2>List</h2>
+            </div>
             <ul>
                 {
                     zoo.map(z => <li key={z.id}>{z.type}</li>)
