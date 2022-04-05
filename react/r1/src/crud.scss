@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    .top {
+        height: 100px;
+        background-color: cornflowerblue;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        h1 {
+            color: orangered;
+            margin: 0 50px;
+            font-size: 50px;
+            letter-spacing: 3px;
+        }
+    }
+    .bottom {
+        height: 100px;
+        background-color: cornflowerblue;
+        width: 100%;
+    }
+    .content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: 100%;
+        width: 100%;
+        .create,
+        .read {
+            margin: 20px;
+            border: 1px solid crimson;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            h2 {
+                text-align: center;
+                width: 100%;
+                border-bottom: 1px solid crimson;
+                padding: 15px;
+                margin: 0;
+            }
+            .form {
+                margin-top: 30px;
+                input,
+                select {
+                    border: 1px solid crimson;
+                    border-radius: 4px;
+                    font-size: 20px;
+                    outline: none;
+                }
+                select {
+                    width: 100%;
+                }
+                [type=text] {
+                    width: 100%;
+                }
+                .input {
+                    display: flex;
+                    align-items: center;
+                    margin: 17px;
+                    label {
+                        margin: 5px;
+                        font-size: 20px;
+                        display: inline-block;
+                        width: 80px;
+                    }
+                    &.btn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-top: 1px solid crimson;
+                        padding-top: 15px;
+                        button {
+                            border: 1px solid crimson;
+                            background-color: crimson;
+                            color: white;
+                            padding: 10px 30px;
+                            border-radius: 8px;
+                            font-size: 20px;
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
