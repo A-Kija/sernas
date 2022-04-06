@@ -27,7 +27,7 @@ function Create({create}) {
                 setColor(e.target.value);
                 break;
             case 'isalive':
-                setIsalive(i => i == 0 ? 1 : 0);
+                setIsalive(i => i === 0 ? 1 : 0);
                 break;
             default:
         }

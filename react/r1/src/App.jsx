@@ -31,7 +31,7 @@ function App() {
     }
 
     const getAnimal = () => {
-        return zoo.filter(a => a.id == modal)[0];
+        return zoo.filter(a => a.id === modal)[0];
     }
 
     const create = data => {
