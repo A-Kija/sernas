@@ -9,7 +9,7 @@ body {
 .app {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: aliceblue;
     justify-content: space-between;
     align-items: center;
@@ -150,6 +150,62 @@ body {
                             text-transform: uppercase;
                             &.add {
                                 background-color: cornflowerblue;
+                            }
+                        }
+                    }
+                }
+            }
+            ul {
+                padding: 10px;
+                width: 100%;
+                li {
+                    list-style: none;
+                    font-size: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    padding: 5px 0;
+                    border-bottom: 1px solid gray;
+                    .content {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        span {
+                            display: inline-block;
+                            padding-right: 10px;
+                            font-size: 30px;
+                        }
+                        i {
+                            line-height: 30px;
+                        }
+                        .isalive {
+                            width: 20px;
+                            height: 20px;
+                            background-color: crimson;
+                            margin: 0 10px;
+                        }
+                    }
+                    .buttons {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        button {
+                            color: white;
+                            padding: 10px 30px;
+                            border-radius: 8px;
+                            font-size: 20px;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                            letter-spacing: 1px;
+                            margin: 5px;
+                            text-transform: uppercase;
+                            &.edit {
+                                background-color: darkgreen;
+                            }
+                            &.delete {
+                                background-color: crimson
                             }
                         }
                     }

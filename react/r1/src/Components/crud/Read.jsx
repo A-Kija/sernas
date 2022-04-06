@@ -1,3 +1,5 @@
+import Animal from "./Animal";
+
 function Read({zoo}) {
 
     return (
@@ -7,7 +9,7 @@ function Read({zoo}) {
             </div>
             <ul>
                 {
-                    zoo.map(z => <li key={z.id}>{z.type}</li>)
+                    zoo.map(z => <Animal key={z.id} animal={z}></Animal>)
                 }
             </ul>
         </div>

@@ -3,7 +3,7 @@ import { useState } from "react";
 function Create({create}) {
 
     const [type, setType] = useState('');
-    const [color, setColor] = useState('');
+    const [color, setColor] = useState('yellow');
     const [isalive, setIsalive] = useState(1);
 
     const handleCreate = () => {
@@ -57,7 +57,7 @@ function Create({create}) {
 
                 <div className="input">
                 <label>Is alive:</label>
-                <input type="checkbox" checked={!!isalive} onClick={(e) => handleInput(e, 'isalive')}></input>
+                <input type="checkbox" checked={isalive} onChange={(e) => handleInput(e, 'isalive')}></input>
                 </div>
 
                 <div className="input btn">

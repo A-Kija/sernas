@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import getNewId from './Common/id';
 import Create from './Components/crud/Create';
 import Read from './Components/crud/Read';
+
 import './crud.scss';
 
 function App() {
