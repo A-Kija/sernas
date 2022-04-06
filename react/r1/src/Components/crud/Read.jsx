@@ -1,6 +1,6 @@
 import Animal from "./Animal";
 
-function Read({zoo}) {
+function Read({zoo, deleteA, show}) {
 
     return (
         <div className="read">
@@ -9,7 +9,7 @@ function Read({zoo}) {
             </div>
             <ul>
                 {
-                    zoo.map(z => <Animal key={z.id} animal={z}></Animal>)
+                    zoo.map(z => <Animal key={z.id} animal={z} deleteA={deleteA} show={show}></Animal>)
                 }
             </ul>
         </div>

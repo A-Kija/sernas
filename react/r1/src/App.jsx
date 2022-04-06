@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import getNewId from './Common/id';
 import Create from './Components/crud/Create';
+import Edit from './Components/crud/Edit';
 import Read from './Components/crud/Read';
 
 import './crud.scss';
@@ -8,6 +9,7 @@ import './crud.scss';
 function App() {
 
     const [zoo, setZoo] = useState([]);
+    const [modal, setModal] = useState(0);
 
     useEffect(() => {
         let data = localStorage.getItem('zoo');
@@ -20,7 +22,19 @@ function App() {
         }
     }, []);
 
-    const create = (data) => {
+    const cancel = () => {
+        setModal(0);
+    }
+
+    const show = id => {
+        setModal(id);
+    }
+
+    const getAnimal = () => {
+        return zoo.filter(a => a.id == modal)[0];
+    }
+
+    const create = data => {
         const animal = {
             type: data.type,
             color: data.color,
@@ -35,6 +49,18 @@ function App() {
         setZoo(zoo => [...zoo, animal]);
     } 
 
+    const edit = data => {
+
+    } 
+
+    const deleteA = id => {
+        // localStorage logic
+        const newData = zoo.filter(a => a.id !== id);
+        localStorage.setItem('zoo', JSON.stringify(newData));
+        //
+        setZoo(zoo => zoo.filter(a => a.id !== id));
+    }
+
 
 
   return (
@@ -44,11 +70,14 @@ function App() {
             </div>
             <div className="content">
             <Create create={create}></Create>
-            <Read zoo={zoo}></Read>
+            <Read zoo={zoo} deleteA={deleteA} show={show}></Read>
             </div>
             <div className="bottom">
         
             </div>
+            {
+                modal ? <Edit edit={edit} animal={getAnimal()} cancel={cancel}></Edit> : null
+            }
     </div>
   );
 }

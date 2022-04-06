@@ -1,5 +1,8 @@
-function Animal({animal}) {
+function Animal({animal, deleteA, show}) {
 
+    const handleDelete = id => {
+        deleteA(parseInt(id));
+    }
 
     return (
         <li>
@@ -11,8 +14,8 @@ function Animal({animal}) {
             }
             </div>
             <div className="buttons">
-                <button className="edit">edit</button>
-                <button className="delete">delete</button>
+                <button className="edit" onClick={()=>show(animal.id)}>edit</button>
+                <button className="delete" onClick={() => handleDelete(animal.id)}>delete</button>
             </div>
         </li>
     )

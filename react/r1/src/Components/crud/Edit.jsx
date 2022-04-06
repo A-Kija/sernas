@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Create({create}) {
+function Edit({edit, animal, cancel}) {
 
     const [type, setType] = useState('');
     const [color, setColor] = useState('yellow');
     const [isalive, setIsalive] = useState(1);
 
-    const handleCreate = () => {
+    useEffect(() => {
+        setType(animal.type);
+        setColor(animal.color);
+        setIsalive(animal.isalive);
+    }, [])
+
+    
+    const handleCancel = () => {
+        cancel();
+    }
+
+    const handleEdit = () => {
         const data = {
             type: type,
             color: color,
             isalive: isalive
         }
-        create(data);
+        edit(data);
         setType('');
         setColor('yellow');
         setIsalive(1);
@@ -35,9 +46,10 @@ function Create({create}) {
 
 
     return (
-        <div className="create">
+        <div className="modal">
+        <div className="edit">
             <div className="header">
-            <h2>Create</h2>
+            <h2>Edit</h2>
             </div>
             
             <div className="form">
@@ -64,12 +76,14 @@ function Create({create}) {
                 </div>
 
                 <div className="input btn">
-                <button className="add" onClick={handleCreate}>create</button>
+                <button className="add" onClick={handleEdit}>edit</button>
+                <button className="cancel" onClick={handleCancel}>cancel</button>
                 </div>
             
             </div>
         </div>
+        </div>
     )
 }
 
-export default Create;
+export default Edit;
