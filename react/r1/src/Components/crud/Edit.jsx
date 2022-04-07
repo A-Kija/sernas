@@ -24,9 +24,6 @@ function Edit({edit, animal, cancel}) {
             isalive: isalive
         }
         edit(data);
-        setType('');
-        setColor('yellow');
-        setIsalive(1);
     }
 
     const handleInput = (e, d) => {
