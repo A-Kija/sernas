@@ -50,7 +50,28 @@ function App() {
     } 
 
     const edit = data => {
-
+        // localStorage logic
+            const zooCopy = [...zoo];
+            zooCopy.forEach((z, i) => {
+                if (z.id === modal) {
+                    zooCopy[i].type = data.type;
+                    zooCopy[i].color = data.color;
+                    zooCopy[i].isalive = data.isalive;
+                }
+            });
+            localStorage.setItem('zoo', JSON.stringify(zooCopy));
+        // 
+        setZoo(z1 => {
+            z1.forEach((z, i) => {
+                if (z.id === modal) {
+                    z1[i].type = data.type;
+                    z1[i].color = data.color;
+                    z1[i].isalive = data.isalive;
+                }
+            });
+            return z1;
+        });
+        cancel();
     } 
 
     const deleteA = id => {
