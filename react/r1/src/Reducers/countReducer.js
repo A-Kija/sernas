@@ -1,4 +1,4 @@
-import { ADD_1, ADD_11, ADD_RAND, DIF_1, DIF_11, DIF_RAND } from "../Constants";
+import { ADD_1, ADD_11, ADD_RAND, CC, DIF_1, DIF_11, DIF_RAND } from "../Constants";
 
 function countReducer(state, action) {
     switch (action.type) {
@@ -14,6 +14,8 @@ function countReducer(state, action) {
             return state + action.payload;
         case DIF_RAND:
             return state - action.payload;
+        case CC:
+            return state === 'blue' ? 'pink' : 'blue';
         default:
             return state;
     }

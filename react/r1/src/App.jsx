@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
-import { add1, add11, addRand, dif1, dif11, difRand } from './Actions/basic';
+import { add1, add11, addRand, cc, dif1, dif11, difRand } from './Actions/basic';
 import './App.css';
 import rand from './Common/rand';
 import countReducer from './Reducers/countReducer';
@@ -8,6 +8,8 @@ function App() {
 
     const [countR, dispachR] = useReducer(countReducer, 333);
     const [random, setRandom] = useState(100);
+
+    const [color, dispachColor] = useReducer(countReducer, 'pink');
 
     useEffect(() => {
         setRandom(rand(10, 80));
@@ -35,6 +37,12 @@ function App() {
                 <button onClick={() => dispachR(difRand(random))}>-{random}</button>
                 <button onClick={() => getNewRand('+')}>+RAND</button>
                 <button onClick={() => getNewRand('-')}>-RAND</button>
+                <button onClick={() => dispachColor(cc())}>Change</button>
+            </div>
+            <div className="S" style={{
+                background: color
+                }}>
+
             </div>
         </div>
     );
