@@ -1,49 +1,25 @@
-import { useRef, useState, useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
+import { add1, add11, dif1, dif11 } from './Actions/basic';
 import './App.css';
 import rand from './Common/rand';
 import countReducer from './Reducers/countReducer';
 
 function App() {
 
-    const [count, setCount] = useState(100);
-    const countRef = useRef([]);
-    const inp = useRef();
-
     const [countR, dispachR] = useReducer(countReducer, 333);
 
-    
-    useEffect(() => {
-        inp.current.focus();
-        console.log(inp);
-        // document.querySelector('input').focus();
-      }, []);
-
-    const countNow = () => {
-        countRef.current.push(count);
-        setCount(c => c + rand(5, 100))
-    }
-
-    const undo = () => {
-        if (countRef.current.length === 1) {
-            setCount(countRef.current[0]);
-        } else {
-            setCount(countRef.current.pop());
-        }
-    }
-
-
-  return (
-    <div className="App">
-      <h1>USE Ref</h1>
-      <h2>Count NOW: {count}</h2>
-      <h2>Count REDUCER NOW: {countR}</h2>
-
-      <input type="text" ref={inp}></input>
-
-      <button onClick={countNow}>COUNT NOW!</button>
-      <button onClick={undo}>Undo</button>
-    </div>
-  );
+    return (
+        <div className="App">
+            <h1>USE REduCER</h1>
+            <h2>Count REDUCER NOW: {countR}</h2>
+            <div className="buttons">
+                <button onClick={() => dispachR(add1())}>+1</button>
+                <button onClick={() => dispachR(dif1())}>-1</button>
+                <button onClick={() => dispachR(add11())}>+11</button>
+                <button onClick={() => dispachR(dif11())}>-11</button>
+            </div>
+        </div>
+    );
 }
 
 export default App;

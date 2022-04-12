@@ -54,3 +54,15 @@
     align-items: center;
     margin: 10px;
 }
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    width: 500px;
+}
+
+.buttons button {
+    min-width: 50px;
+}
