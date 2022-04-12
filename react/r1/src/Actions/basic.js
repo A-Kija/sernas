@@ -1,4 +1,4 @@
-import { ADD_1, ADD_11, DIF_1, DIF_11 } from "../Constants";
+import { ADD_1, ADD_11, ADD_RAND, DIF_1, DIF_11, DIF_RAND } from "../Constants";
 
 export function add1() {
     return {
@@ -21,5 +21,19 @@ export function add11() {
 export function dif11() {
     return {
         type: DIF_11
+    }
+}
+
+export function addRand(payload) {
+    return {
+        type: ADD_RAND,
+        payload: payload
+    }
+}
+
+export function difRand(payload) {
+    return {
+        type: DIF_RAND,
+        payload: payload
     }
 }
