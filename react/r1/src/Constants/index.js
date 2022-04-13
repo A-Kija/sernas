@@ -7,7 +7,8 @@ export const DIF_RAND = 'DIF_RAND';
 
 export const CC = 'CC';
 
-// Daro kazka
-export const ADD_KV = 'ADD_KV';
+// Antanas 1000-2000
+export const ADD_KV = 1500;
 
-export const DEL_KV = 'DEL_KV';
+// Janina 3000-4000
+export const DEL_KV = 3421;

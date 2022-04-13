@@ -1,10 +1,11 @@
-import kvadratelis from '../Reducers/kvadratelis';
+// import kvadratelis from '../Reducers/kvadratelis';
 import { useReducer } from 'react';
 import { addKv, delKv } from '../Actions/kvadratelis';
+import kvMaster from '../Reducers/kvMaster';
 
 function Kvadratelis() {
 
-    const [kv, dispachKv] = useReducer(kvadratelis, []);
+    const [kv, dispachKv] = useReducer(kvMaster, []);
 
     return (
         <>
