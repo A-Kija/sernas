@@ -6,3 +6,5 @@ export const ADD_RAND = 'ADD_RAND';
 export const DIF_RAND = 'DIF_RAND';
 
 export const CC = 'CC';
+
+export const ADD_KV = 'ADD_KV';
