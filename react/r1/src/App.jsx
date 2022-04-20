@@ -1,49 +1,42 @@
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
-
-import Office1 from './Routes/Office1';
-import Alabama from './Routes/Alabama';
-import Edit from './Routes/Edit';
-
-export const data = [
-    {n: 'barsukas', id: 5},
-    {n: 'bebras', id: 9},
-    {n: 'krokodilas', id: 15},
-    {n: 'vilkas', id: 775},
-    {n: 'zuikis', id: 29}
-];
+import axios from 'axios';
 
 function App() {
-  return (
 
-    <BrowserRouter>
-    <div className="App">
-      <h1>ROUTER</h1>
-        <Link to="/back-office" className="super">Back Office</Link>
-        <Link to="/sweet-home" className="super">Alabama</Link>
-        <div>-----------------------------------------------</div>
-        {
-            data.map(a =><Link key={a.id} to={'/edit/' + a.id + '/' + a.n}>{a.n}</Link>)
-        }
+    const [users, setUsers] = useState([]);
 
+    const [c, setC] = useState(1);
 
+    // const abc = () => {
+    //     console.log('ABC');
+    // }
 
+    const abc = useCallback(() => {
+        console.log('ABC');
+    }, []);
 
 
+    useEffect(() => {
+        console.log('GO EFFECT');
+        abc();
+    }, [abc]);
 
-        <Routes>
-            <Route path="/" element={<div>Hello!</div>}></Route>
-            <Route path="/back-office" element={<Office1></Office1>}></Route>
-            <Route path="/sweet-home" element={<Alabama></Alabama>}></Route>
-            <Route path="/edit/:id/:name" element={<Edit></Edit>}></Route>
-            <Route path="*" element={<div>404 not found</div>}></Route>
-        </Routes>
-        
-    </div>
+    useEffect(() => {
+        axios.get('https://reqres.in/api/users?page=2')
+        .then(res => setUsers(res.data.data));
+    }, []);
+
     
-    </BrowserRouter>
-
-  );
+    return (
+        <div className="App">
+            <h1>The End season: {c}</h1>
+            <button onClick={() => setC(a => a + 1)}>ReRender</button>
+            {
+                users.map(u => <img key={u.id} src={u.avatar}></img>)
+            }
+        </div>
+    );
 }
 
 export default App;

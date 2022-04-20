@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { data } from "../App";
+import { data } from "../App14";
 
 function Edit() {
 
