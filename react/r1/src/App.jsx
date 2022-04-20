@@ -23,7 +23,7 @@ function App() {
     }, [abc]);
 
     useEffect(() => {
-        axios.get('https://reqres.in/api/users?page=2')
+        axios.get('https://reqres.in/api/users?delay=3')
         .then(res => setUsers(res.data.data));
     }, []);
 
@@ -33,7 +33,7 @@ function App() {
             <h1>The End season: {c}</h1>
             <button onClick={() => setC(a => a + 1)}>ReRender</button>
             {
-                users.map(u => <img key={u.id} src={u.avatar}></img>)
+                users.length ? users.map(u => <img key={u.id} alt="aik" src={u.avatar}></img>) : <div className="lds-heart"><div></div></div>
             }
         </div>
     );
