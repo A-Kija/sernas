@@ -10,14 +10,18 @@ function App() {
   useEffect( () => {
     axios.get('http://localhost:3003/trees-manager')
     .then(res => {
-      console.log(res.data)
+      console.log(res.data);
+      setTrees(res.data);
     })
-  })
+  }, []);
   
   return (
     <div className="App">
       <header className="App-header">
         <h1>Labas</h1>
+        {
+          trees.filter(t => t.name !== 'Agrastas').map(t => <div key={t.id}>{t.name}</div>)
+        }
       </header>
     </div>
   );
