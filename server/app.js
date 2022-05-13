@@ -34,7 +34,7 @@ app.get('/trees-manager', (req, res) => {
     const sql = `
         SELECT
         *
-        FROM trees
+        FROM medziai
     `;
     con.query(sql, function(err, result) {
         if (err) throw err;
