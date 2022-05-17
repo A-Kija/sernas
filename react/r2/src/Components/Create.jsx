@@ -1,10 +1,18 @@
 import { useState } from "react";
 
-function Create() {
+function Create({setCreateData}) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
+
+    const buttonHandler = () => {
+        setCreateData({
+            title,
+            height,
+            type
+        });
+    }
 
     const inputHandler = (e, which) => {
         switch(which) {
@@ -53,7 +61,7 @@ function Create() {
                             </div>
                         </div>
                         <div className="buttons">
-                        <button type="button" className="btn btn-outline-primary m-3">Add</button>
+                        <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Add</button>
                         </div>
                     </div>
                 </div>
