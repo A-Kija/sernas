@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './bootstrap.css';
 import './App.css';
+import Create from './Components/Create';
 
 
 function App() {
@@ -21,38 +22,21 @@ function App() {
     <div className="container">
       <div className="row">
         <div className="col-4">
-          One of three columns
+          <Create></Create>
         </div>
         <div className="col-8">
-
           <div className="card m-4">
             <div className="card-header">
               Tree List
             </div>
             <div className="card-body">
-
               <ul className="list-group">
-
                 {
                   trees.filter(t => t.name !== 'Agrastas').map(t => <li className="list-group-item" key={t.id}>{t.name}</li>)
                 }
               </ul>
-
-
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
       </div>
     </div>
