@@ -25,9 +25,9 @@ function App() {
           <Create></Create>
         </div>
         <div className="col-8">
-          <div className="card m-4">
+          <div className="card m-2">
             <div className="card-header">
-              Tree List
+              <h2>Tree List</h2>
             </div>
             <div className="card-body">
               <ul className="list-group">
