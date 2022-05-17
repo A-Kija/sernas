@@ -21,9 +21,9 @@ function Create() {
                             </div>
                         </div>
                         <div className="col-8">
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label>Tree type</label>
-                                <select class="form-control">
+                                <select className="form-control">
                                     <option value="1">Leaf</option>
                                     <option value="2">Spike</option>
                                     <option value="3">Palm</option>
@@ -31,8 +31,8 @@ function Create() {
                                 <small className="form-text text-muted">Tree type.</small>
                             </div>
                         </div>
-                        <div class="buttons">
-                        <button type="button" class="btn btn-outline-primary m-3">Add</button>
+                        <div className="buttons">
+                        <button type="button" className="btn btn-outline-primary m-3">Add</button>
                         </div>
                     </div>
                 </div>
