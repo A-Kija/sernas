@@ -5,6 +5,7 @@ import './bootstrap.css';
 import './App.scss';
 import Create from './Components/Create';
 import TreeLine from './Components/TreeLine';
+import Modal from './Components/Modal';
 
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
   const [trees, setTrees] = useState([]);
 
   const [createData, setCreateData] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
+
 
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
@@ -33,11 +36,24 @@ function App() {
       setLastUpdate(Date.now());
     });
 
-  },[createData])
+  },[createData]);
+
+  useEffect(() => {
+    if (null === deleteId) {
+      return;
+    }
+    axios.delete('http://localhost:3003/trees-manager/' + deleteId.id, )
+    .then(res => {
+      console.log(res);
+      setLastUpdate(Date.now());
+    });
+
+  },[deleteId])
 
 
 
   return (
+    <>
     <div className="container">
       <div className="row">
         <div className="col-4">
@@ -51,7 +67,7 @@ function App() {
             <div className="card-body">
               <ul className="list-group">
                 {
-                  trees.map(t => <TreeLine key={t.id} tree={t}></TreeLine>)
+                  trees.map(t => <TreeLine key={t.id} tree={t} setDeleteId={setDeleteId}></TreeLine>)
                 }
               </ul>
             </div>
@@ -59,6 +75,8 @@ function App() {
         </div>
       </div>
     </div>
+    <Modal></Modal>
+    </>
   );
 }
 

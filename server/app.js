@@ -65,6 +65,21 @@ app.post('/trees-manager', (req, res) => {
 
 });
 
+// DELETE FROM table_name
+// WHERE some_column = some_value
+app.delete('/trees-manager/:id', (req, res) => {
+    const sql = `
+        DELETE FROM medziai
+        WHERE id = ?
+        `;
+    con.query(sql, [req.params.id], (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
 
 
 
