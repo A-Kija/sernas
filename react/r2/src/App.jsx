@@ -15,12 +15,11 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
 
   const [modalData, setModalData] = useState(null);
 
-
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
-
+  // Read
   useEffect(() => {
     axios.get('http://localhost:3003/trees-manager')
       .then(res => {
@@ -29,6 +28,7 @@ function App() {
       })
   }, [lastUpdate]);
 
+  //Create
   useEffect(() => {
     if (null === createData) {
       return;
@@ -41,6 +41,7 @@ function App() {
 
   },[createData]);
 
+  //Edit
   useEffect(() => {
     if (null === editData) {
       return;
@@ -53,6 +54,7 @@ function App() {
 
   },[editData]);
 
+  //Delete
   useEffect(() => {
     if (null === deleteId) {
       return;
