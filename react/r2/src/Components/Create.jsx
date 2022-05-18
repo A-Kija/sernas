@@ -12,6 +12,9 @@ function Create({setCreateData}) {
             height,
             type
         });
+        setTitle('');
+        setHeight('');
+        setType(1);
     }
 
     const inputHandler = (e, which) => {

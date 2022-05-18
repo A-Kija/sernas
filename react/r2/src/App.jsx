@@ -4,6 +4,7 @@ import axios from 'axios';
 import './bootstrap.css';
 import './App.scss';
 import Create from './Components/Create';
+import TreeLine from './Components/TreeLine';
 
 
 function App() {
@@ -12,20 +13,25 @@ function App() {
 
   const [createData, setCreateData] = useState(null);
 
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
+
   useEffect(() => {
     axios.get('http://localhost:3003/trees-manager')
       .then(res => {
         console.log(res.data);
         setTrees(res.data);
       })
-  }, []);
+  }, [lastUpdate]);
 
   useEffect(() => {
     if (null === createData) {
       return;
     }
     axios.post('http://localhost:3003/trees-manager', createData)
-    .then(res => console.log(res));
+    .then(res => {
+      console.log(res);
+      setLastUpdate(Date.now());
+    });
 
   },[createData])
 
@@ -45,7 +51,7 @@ function App() {
             <div className="card-body">
               <ul className="list-group">
                 {
-                  trees.filter(t => t.name !== 'Agrastas').map(t => <li className="list-group-item" key={t.id}>{t.name}</li>)
+                  trees.map(t => <TreeLine key={t.id} tree={t}></TreeLine>)
                 }
               </ul>
             </div>
