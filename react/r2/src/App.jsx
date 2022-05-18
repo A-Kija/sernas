@@ -15,6 +15,8 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
+  const [modalData, setModalData] = useState(null);
+
 
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
@@ -67,7 +69,7 @@ function App() {
             <div className="card-body">
               <ul className="list-group">
                 {
-                  trees.map(t => <TreeLine key={t.id} tree={t} setDeleteId={setDeleteId}></TreeLine>)
+                  trees.map(t => <TreeLine key={t.id} tree={t} setDeleteId={setDeleteId} setModalData={setModalData}></TreeLine>)
                 }
               </ul>
             </div>
@@ -75,7 +77,7 @@ function App() {
         </div>
       </div>
     </div>
-    <Modal></Modal>
+    <Modal setModalData={setModalData} modalData={modalData}></Modal>
     </>
   );
 }

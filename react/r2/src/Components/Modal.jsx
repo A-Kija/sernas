@@ -1,9 +1,11 @@
-import { useState } from "react";
-function Modal() {
+import { useEffect, useState } from "react";
+function Modal({setModalData, modalData}) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
+
+
 
     const buttonHandler = () => {
         // setCreateData({
@@ -31,13 +33,29 @@ function Modal() {
         }
     }
 
+    useEffect(() => {
+        if (modalData === null) {
+            setTitle('');
+            setHeight('');
+            setType(1);
+        } else {
+            setTitle(modalData.name);
+            setHeight(modalData.height);
+            setType(modalData.type);
+        }
+    }, [modalData])
+
+    if (modalData === null) {
+        return null;
+    }
+
     return (
         <div className="modal modal-dialog-centered" id="modal">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" onClick={() => setModalData(null)}>
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -75,6 +93,7 @@ function Modal() {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Save</button>
+                        <button type="button" className="btn btn-outline-danger m-3"  onClick={() => setModalData(null)}>Cancel</button>
                     </div>
                 </div>
             </div>
