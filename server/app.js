@@ -54,7 +54,7 @@ app.post('/trees-manager', (req, res) => {
 
     con.query(sql, [
         req.body.title,
-        req.body.height,
+        !req.body.height ? 0 : req.body.height,
         req.body.type
     ], (err, results) => {
         if (err) {
