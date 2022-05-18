@@ -13,6 +13,7 @@ function App() {
   const [trees, setTrees] = useState([]);
 
   const [createData, setCreateData] = useState(null);
+  const [editData, setEditData] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
   const [modalData, setModalData] = useState(null);
@@ -39,6 +40,18 @@ function App() {
     });
 
   },[createData]);
+
+  useEffect(() => {
+    if (null === editData) {
+      return;
+    }
+    axios.put('http://localhost:3003/trees-manager/'+ editData.id, editData)
+    .then(res => {
+      console.log(res);
+      setLastUpdate(Date.now());
+    });
+
+  },[editData]);
 
   useEffect(() => {
     if (null === deleteId) {
@@ -77,7 +90,7 @@ function App() {
         </div>
       </div>
     </div>
-    <Modal setModalData={setModalData} modalData={modalData}></Modal>
+    <Modal setEditData={setEditData} setModalData={setModalData} modalData={modalData}></Modal>
     </>
   );
 }

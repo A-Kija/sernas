@@ -80,6 +80,27 @@ app.delete('/trees-manager/:id', (req, res) => {
     })
 })
 
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
+app.put('/trees-manager/:id', (req, res) => {
+    const sql = `
+        UPDATE medziai
+        SET name = ?, type = ?, height = ?
+        WHERE id = ?
+    `;
+    con.query(sql, [
+        req.body.title,
+        req.body.type,
+        req.body.height,
+        req.params.id
+    ], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
 
 
 

@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
-function Modal({setModalData, modalData}) {
+function Modal({setModalData, modalData, setEditData}) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
-
-
+    const [id, setId] = useState('0');
 
     const buttonHandler = () => {
-        // setCreateData({
-        //     title,
-        //     height,
-        //     type
-        // });
-        setTitle('');
-        setHeight('');
-        setType(1);
+        setEditData({
+            title,
+            height,
+            type,
+            id
+        });
+        setModalData(null);
     }
 
     const inputHandler = (e, which) => {
@@ -42,6 +40,7 @@ function Modal({setModalData, modalData}) {
             setTitle(modalData.name);
             setHeight(modalData.height);
             setType(modalData.type);
+            setId(modalData.id);
         }
     }, [modalData])
 
