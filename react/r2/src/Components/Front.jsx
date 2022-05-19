@@ -4,20 +4,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../bootstrap.css';
 
-function Front({go}) {
+function Front({show}) {
 
     const [trees, setTrees] = useState([]);
 
-    console.log(go);
+
 
     // Read
     useEffect(() => {
-        axios.get('http://localhost:3003/trees-manager')
+        axios.get('http://localhost:3003/trees-list/'+show)
             .then(res => {
                 console.log(res.data);
                 setTrees(res.data);
             })
-    }, []);
+    }, [show]);
 
     return (
         <>
