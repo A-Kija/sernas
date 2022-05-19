@@ -32,9 +32,9 @@ function Front({show}) {
                             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                                 <div className="navbar-nav">
                                     <Link className="nav-link" to="/">Home</Link>
-                                    <Link className="nav-link" to="leaf">Leaf</Link>
-                                    <Link className="nav-link" to="spike">Spike</Link>
-                                    <Link className="nav-link" to="palm">Palm</Link>
+                                    <Link className="nav-link" to="/leaf">Leaf</Link>
+                                    <Link className="nav-link" to="/spike">Spike</Link>
+                                    <Link className="nav-link" to="/palm">Palm</Link>
                                 </div>
                             </div>
                         </nav>
