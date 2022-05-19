@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../bootstrap.css';
+import '../front.scss';
 
-function Front({show}) {
+function Front({ show }) {
 
     const [trees, setTrees] = useState([]);
 
@@ -12,7 +13,7 @@ function Front({show}) {
 
     // Read
     useEffect(() => {
-        axios.get('http://localhost:3003/trees-list/'+show)
+        axios.get('http://localhost:3003/trees-list/' + show)
             .then(res => {
                 console.log(res.data);
                 setTrees(res.data);
@@ -49,6 +50,20 @@ function Front({show}) {
                                 trees.map(t => <TreeLine key={t.id} tree={t}></TreeLine>)
                             }
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div className="container mt-4">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="arrows">
+                        <svg className="up">
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        <svg className="down">
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        </div>
                     </div>
                 </div>
             </div>
