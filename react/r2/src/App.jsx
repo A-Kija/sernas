@@ -7,7 +7,7 @@ function App() {
     return (
         <BrowserRouter>
         <Routes>
-        <Route index element={<Front/>} />
+        <Route index element={<Front go="von"/>} />
         <Route path="admin" element={<Back/>}></Route>
         </Routes>
         </BrowserRouter>
