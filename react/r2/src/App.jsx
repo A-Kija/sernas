@@ -10,13 +10,13 @@ import Modal from './Components/Modal';
 
 function App() {
 
-  const [trees, setTrees] = useState([]);
+  const [lastUpdate, setLastUpdate] = useState(Date.now());// state
 
+  const [trees, setTrees] = useState([]);
+  
   const [createData, setCreateData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
-
   const [modalData, setModalData] = useState(null);
 
   // Read
