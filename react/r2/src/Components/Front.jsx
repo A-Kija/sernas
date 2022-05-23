@@ -10,6 +10,7 @@ import { getDataFromServer, sortClientHeightAsc, sortClientHeightDesc, sortClien
 function Front({ show }) {
 
     const [trees, dispachTrees] = useReducer(reducer, []);
+    const [search, setSearch] = useState('')
 
     // Read
     useEffect(() => {
@@ -19,6 +20,21 @@ function Front({ show }) {
                 dispachTrees(getDataFromServer(res.data));
             })
     }, [show]);
+
+    const serverSort = (by, dir) => {
+        axios.get('http://localhost:3003/trees-list-sorted/?dir='+ dir + '&by=' + by)
+        .then(res => {
+            dispachTrees(getDataFromServer(res.data));
+        });
+    }
+
+    const doSearch = e => {
+        setSearch(e.target.value);
+        axios.get('http://localhost:3003/trees-list-search/?s='+ e.target.value)
+        .then(res => {
+            dispachTrees(getDataFromServer(res.data));
+        });
+    }
 
     return (
         <>
@@ -56,6 +72,28 @@ function Front({ show }) {
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-2">
+                        <span>By name <small>server</small>:</span>
+                        <div className="arrows">
+                        <svg className="up" onClick={() => serverSort('title', 'asc')}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        <svg className="down"  onClick={() => serverSort('title', 'desc')}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <span>By height <small>server</small>:</span>
+                        <div className="arrows">
+                        <svg className="up"  onClick={() => serverSort('height', 'asc')}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        <svg className="down"  onClick={() => serverSort('height', 'desc')}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        </div>
+                    </div>
+                    <div className="col-2">
                         <span>By name <small>client</small>:</span>
                         <div className="arrows">
                         <svg className="up" onClick={() => dispachTrees(sortClientNameAsc())}>
@@ -76,6 +114,13 @@ function Front({ show }) {
                             <use xlinkHref="#arrow"></use>
                         </svg>
                         </div>
+                    </div>
+                    <div className="col-2">
+                    <div className="form-group">
+                        <label>search</label>
+                        <input type="text" className="form-control" onChange={doSearch} value={search} />
+                        <small className="form-text text-muted">Add new tree name here.</small>
+                    </div>
                     </div>
                 </div>
             </div>

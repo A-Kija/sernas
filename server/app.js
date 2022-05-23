@@ -39,34 +39,94 @@ app.get("/trees-manager", (req, res) => {
     res.json(result);
   });
 });
-    app.get("/trees-list/all", (req, res) => {
-        const sql = `
+app.get("/trees-list/all", (req, res) => {
+  const sql = `
         SELECT
         *
         FROM medziai
     `;
-        con.query(sql, (err, result) => {
-        if (err) throw err;
-        res.send(result);
-    });
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
 
-})
+// SELECT column1, column2, ...
+// FROM table_name
+// WHERE columnN LIKE pattern;
+
+app.get("/trees-list-search", (req, res) => {
+  const sql = `
+        SELECT
+        *
+        FROM medziai
+        WHERE name LIKE '%${req.query.s}%'
+    `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+
+
+
+
+
+
+
+// SELECT column1, column2, ...
+// FROM table_name
+// ORDER BY column1, column2, ... ASC|DESC;
+app.get("/trees-list-sorted/", (req, res) => {
+  
+  let sql;
+
+  if (req.query.by == 'title' && req.query.dir == 'asc'){
+    sql = `SELECT * FROM medziai ORDER BY name ASC`;
+  }
+  else if (req.query.by == 'title' && req.query.dir == 'desc'){
+    sql = `SELECT * FROM medziai ORDER BY name DESC`;
+  }
+  else if (req.query.by == 'height' && req.query.dir == 'asc'){
+    sql = `SELECT * FROM medziai ORDER BY height ASC`;
+  }
+  else{
+    sql = `SELECT * FROM medziai ORDER BY height DESC`;
+  }
+    con.query(
+      sql,
+      (err, results) => {
+        if (err) throw err;
+        res.send(results);
+      }
+    );
+});
+
+
+
+
+
+
 
 app.get("/trees-list/:cat", (req, res) => {
-    if (req.params.cat != "all") {
+  if (req.params.cat != "all") {
     const sql = `
             SELECT
             *
             FROM medziai
             WHERE type = ?
         `;
-    con.query(sql, [['leaf','spike','palm'].indexOf(req.params.cat) + 1], (err, result) => {
-      if (err) throw err;
-      res.send(result);
-    });
+    con.query(
+      sql,
+      [["leaf", "spike", "palm"].indexOf(req.params.cat) + 1],
+      (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
   }
 });
-
 
 app.post("/trees-manager", (req, res) => {
   // INSERT INTO table_name (column1, column2, column3, ...)
