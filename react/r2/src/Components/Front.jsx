@@ -9,11 +9,7 @@ import { getDataFromServer } from "../Actions";
 
 function Front({ show }) {
 
-    // const [trees, setTrees] = useState([]);
-
     const [trees, dispachTrees] = useReducer(reducer, []);
-
-
 
     // Read
     useEffect(() => {
