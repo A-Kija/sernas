@@ -1,13 +1,17 @@
 import TreeLine from "./Front/TreeLine";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import '../bootstrap.css';
 import '../front.scss';
+import reducer from "../Reducers/reducer";
+import { getDataFromServer } from "../Actions";
 
 function Front({ show }) {
 
-    const [trees, setTrees] = useState([]);
+    // const [trees, setTrees] = useState([]);
+
+    const [trees, dispachTrees] = useReducer(reducer, []);
 
 
 
@@ -16,7 +20,7 @@ function Front({ show }) {
         axios.get('http://localhost:3003/trees-list/' + show)
             .then(res => {
                 console.log(res.data);
-                setTrees(res.data);
+                dispachTrees(getDataFromServer(res.data));
             })
     }, [show]);
 
