@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../bootstrap.css';
 import '../front.scss';
 import reducer from "../Reducers/reducer";
-import { getDataFromServer } from "../Actions";
+import { getDataFromServer, sortClientHeightAsc, sortClientHeightDesc, sortClientNameAsc, sortClientNameDesc } from "../Actions";
 
 function Front({ show }) {
 
@@ -55,12 +55,24 @@ function Front({ show }) {
             </div>
             <div className="container mt-4">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-2">
+                        <span>By name <small>client</small>:</span>
                         <div className="arrows">
-                        <svg className="up">
+                        <svg className="up" onClick={() => dispachTrees(sortClientNameAsc())}>
                             <use xlinkHref="#arrow"></use>
                         </svg>
-                        <svg className="down">
+                        <svg className="down"  onClick={() => dispachTrees(sortClientNameDesc())}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <span>By height <small>client</small>:</span>
+                        <div className="arrows">
+                        <svg className="up"  onClick={() => dispachTrees(sortClientHeightAsc())}>
+                            <use xlinkHref="#arrow"></use>
+                        </svg>
+                        <svg className="down"  onClick={() => dispachTrees(sortClientHeightDesc())}>
                             <use xlinkHref="#arrow"></use>
                         </svg>
                         </div>
