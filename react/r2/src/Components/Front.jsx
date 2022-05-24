@@ -9,6 +9,7 @@ import { getDataFromServer, sortClientHeightAsc, sortClientHeightDesc, sortClien
 
 function Front({ show }) {
 
+    const [lastUpdate, setLastUpdate] = useState(Date.now());// state
     const [trees, dispachTrees] = useReducer(reducer, []);
     const [search, setSearch] = useState('')
 
@@ -19,7 +20,7 @@ function Front({ show }) {
                 console.log(res.data);
                 dispachTrees(getDataFromServer(res.data));
             })
-    }, [show]);
+    }, [show, lastUpdate]);
 
     const serverSort = (by, dir) => {
         axios.get('http://localhost:3003/trees-list-sorted/?dir='+ dir + '&by=' + by)
@@ -33,6 +34,13 @@ function Front({ show }) {
         axios.get('http://localhost:3003/trees-list-search/?s='+ e.target.value)
         .then(res => {
             dispachTrees(getDataFromServer(res.data));
+        });
+    }
+
+    const saveVote = (id, value) => {
+        axios.put('http://localhost:3003/trees-vote/' + id, {vote: value})
+        .then(res => {
+            setLastUpdate(Date.now());
         });
     }
 
@@ -63,7 +71,7 @@ function Front({ show }) {
                     <div className="col-12">
                         <ul className="list-group">
                             {
-                                trees.map(t => <TreeLine key={t.id} tree={t}></TreeLine>)
+                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote}></TreeLine>)
                             }
                         </ul>
                     </div>

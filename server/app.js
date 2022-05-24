@@ -68,9 +68,23 @@ app.get("/trees-list-search", (req, res) => {
   });
 });
 
-
-
-
+app.put("/trees-vote/:id", (req, res) => {
+  const sql = `
+        UPDATE medziai
+        SET count = count + 1, sum = sum + ?
+        WHERE id = ?
+    `;
+  con.query(
+    sql,
+    [req.body.vote, req.params.id],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      res.send(results);
+    }
+  );
+});
 
 
 
