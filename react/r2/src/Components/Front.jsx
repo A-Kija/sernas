@@ -38,7 +38,7 @@ function Front({ show }) {
     }
 
     const saveVote = (id, value) => {
-        axios.put('http://localhost:3003/trees-vote/' + id, {vote: value})
+        axios.put('http://localhost:3003/trees-vote/' + id + '/', {vote: value})
         .then(res => {
             setLastUpdate(Date.now());
         });
