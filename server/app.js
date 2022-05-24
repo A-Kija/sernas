@@ -39,11 +39,19 @@ app.get("/trees-manager", (req, res) => {
     res.json(result);
   });
 });
+
+// SELECT column_name(s)
+// FROM table1
+// LEFT JOIN table2
+// ON table1.column_name = table2.column_name;
+
 app.get("/trees-list/all", (req, res) => {
   const sql = `
         SELECT
-        *
-        FROM medziai
+        m.id AS id, m.name, m.height, m.type, m.count, m.sum, k.com, k.id AS cid 
+        FROM medziai AS m
+        LEFT JOIN komentarai AS k
+        ON m.id = k.medziai_id
     `;
   con.query(sql, (err, result) => {
     if (err) throw err;

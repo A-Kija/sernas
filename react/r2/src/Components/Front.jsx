@@ -12,13 +12,27 @@ function Front({ show }) {
     const [lastUpdate, setLastUpdate] = useState(Date.now());// state
     const [trees, dispachTrees] = useReducer(reducer, []);
     const [search, setSearch] = useState('')
+    const [com, setCom] = useState([])
 
     // Read
     useEffect(() => {
         axios.get('http://localhost:3003/trees-list/' + show)
             .then(res => {
                 console.log(res.data);
-                dispachTrees(getDataFromServer(res.data));
+                const t = new Map(); //medziai
+                const c = new Map(); //komentarai
+                res.data.forEach(o => {
+                    t.set(o.id, o);
+                    if (null !== o.cid) {
+                        c.set(o.cid, o);
+                    }
+                });
+                const ar = [];
+                t.forEach(o => ar.push(o));
+                const ar2 = [];
+                c.forEach(o => ar2.push(o));
+                setCom(ar2);
+                dispachTrees(getDataFromServer(ar));
             })
     }, [show, lastUpdate]);
 
@@ -38,7 +52,7 @@ function Front({ show }) {
     }
 
     const saveVote = (id, value) => {
-        axios.put('http://localhost:3003/trees-vote/' + id + '/', {vote: value})
+        axios.put('http://localhost:3003/trees-vote/' + id, {vote: value})
         .then(res => {
             setLastUpdate(Date.now());
         });
@@ -71,7 +85,7 @@ function Front({ show }) {
                     <div className="col-12">
                         <ul className="list-group">
                             {
-                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote}></TreeLine>)
+                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote} com={com}></TreeLine>)
                             }
                         </ul>
                     </div>
