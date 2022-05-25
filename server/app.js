@@ -48,14 +48,16 @@ app.get("/trees-manager", (req, res) => {
 app.get("/trees-list/all", (req, res) => {
   const sql = `
         SELECT
-        m.id AS id, m.name, m.height, m.type, m.count, m.sum, k.com, k.id AS cid 
+        m.id AS id, m.name, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, k.id AS cid 
         FROM medziai AS m
         LEFT JOIN komentarai AS k
         ON m.id = k.medziai_id
+        GROUP BY m.id
     `;
   con.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
+
   });
 });
 

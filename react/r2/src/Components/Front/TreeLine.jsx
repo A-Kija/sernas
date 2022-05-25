@@ -19,7 +19,7 @@ function TreeLine({ tree, saveVote, com }) {
                     <input type="number" min="1" max="10" className="ml-2" value={vote} onChange={e=>setVote(e.target.value)}></input>
                     <button type="button" className="btn btn-outline-primary ml-2" onClick={clickVote}>Vote</button>
                     {
-                        com.filter(o => o.id === tree.id).map(c => <div key={c.cid}>{c.com}</div>)
+                        tree.comments ? tree.comments.slice(0, -5).split('-^o^-,').map((c, i) => <div key={i}>{c}</div>)  : null
                     }
                 </div>
             </div>

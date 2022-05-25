@@ -12,27 +12,27 @@ function Front({ show }) {
     const [lastUpdate, setLastUpdate] = useState(Date.now());// state
     const [trees, dispachTrees] = useReducer(reducer, []);
     const [search, setSearch] = useState('')
-    const [com, setCom] = useState([])
+    // const [com, setCom] = useState([])
 
     // Read
     useEffect(() => {
         axios.get('http://localhost:3003/trees-list/' + show)
             .then(res => {
                 console.log(res.data);
-                const t = new Map(); //medziai
-                const c = new Map(); //komentarai
-                res.data.forEach(o => {
-                    t.set(o.id, o);
-                    if (null !== o.cid) {
-                        c.set(o.cid, o);
-                    }
-                });
-                const ar = [];
-                t.forEach(o => ar.push(o));
-                const ar2 = [];
-                c.forEach(o => ar2.push(o));
-                setCom(ar2);
-                dispachTrees(getDataFromServer(ar));
+                // const t = new Map(); //medziai
+                // const c = new Map(); //komentarai
+                // res.data.forEach(o => {
+                //     t.set(o.id, o);
+                //     if (null !== o.cid) {
+                //         c.set(o.cid, o);
+                //     }
+                // });
+                // const ar = [];
+                // t.forEach(o => ar.push(o));
+                // const ar2 = [];
+                // c.forEach(o => ar2.push(o));
+                // setCom(ar2);
+                dispachTrees(getDataFromServer(res.data));
             })
     }, [show, lastUpdate]);
 
@@ -85,7 +85,7 @@ function Front({ show }) {
                     <div className="col-12">
                         <ul className="list-group">
                             {
-                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote} com={com}></TreeLine>)
+                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote}></TreeLine>)
                             }
                         </ul>
                     </div>
