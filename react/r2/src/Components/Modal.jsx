@@ -25,6 +25,7 @@ function Modal({ setModalData, modalData, setEditData }) {
                         del: remove ? 1 : 0
                     });
                     setModalData(null);
+                    setRemove(false);
                 });
         } else {
             setEditData({
@@ -32,10 +33,11 @@ function Modal({ setModalData, modalData, setEditData }) {
                 height,
                 type,
                 id,
-                photo: null,
+                photo: '',
                 del: remove ? 1 : 0
             });
             setModalData(null);
+            setRemove(false);
         }
     }
 

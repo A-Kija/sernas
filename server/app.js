@@ -213,14 +213,33 @@ app.delete("/trees-manager/:id", (req, res) => {
 // SET column1 = value1, column2 = value2, ...
 // WHERE condition;
 app.put("/trees-manager/:id", (req, res) => {
-  const sql = `
+  let sql;
+  let args;
+    if('' === req.body.photo && req.body.del == 0) {
+      sql = `
         UPDATE medziai
         SET name = ?, type = ?, height = ?
         WHERE id = ?
     `;
+      args = [req.body.title, req.body.type, req.body.height, req.params.id];
+    } else if(1 == req.body.del) {
+        sql = `
+        UPDATE medziai
+        SET name = ?, type = ?, height = ?, photo = NULL
+        WHERE id = ?
+    `;
+    args = [req.body.title, req.body.type, req.body.height, req.params.id];
+    } else {
+      sql = `
+      UPDATE medziai
+      SET name = ?, type = ?, height = ?, photo = ?
+      WHERE id = ?
+  `;
+  args = [req.body.title, req.body.type, req.body.height, req.body.photo, req.params.id];
+    }
   con.query(
     sql,
-    [req.body.title, req.body.type, req.body.height, req.params.id],
+    args,
     (err, results) => {
       if (err) {
         throw err;
