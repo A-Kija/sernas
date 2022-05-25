@@ -96,6 +96,24 @@ app.put("/trees-vote/:id", (req, res) => {
   );
 });
 
+app.put("/trees-comment/:id", (req, res) => {
+  const sql = `
+    INSERT INTO komentarai
+    (com, medziai_id)
+    VALUES (?, ?)
+    `;
+  con.query(
+    sql,
+    [req.body.comment, req.params.id],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      res.send(results);
+    }
+  );
+});
+
 
 
 

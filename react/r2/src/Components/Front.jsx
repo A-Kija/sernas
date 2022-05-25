@@ -58,6 +58,13 @@ function Front({ show }) {
         });
     }
 
+    const saveComment = (id, value) => {
+        axios.put('http://localhost:3003/trees-comment/' + id, {comment: value})
+        .then(res => {
+            setLastUpdate(Date.now());
+        });
+    }
+
     return (
         <>
             <div className="container">
@@ -85,7 +92,7 @@ function Front({ show }) {
                     <div className="col-12">
                         <ul className="list-group">
                             {
-                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote}></TreeLine>)
+                                trees.map(t => <TreeLine key={t.id} tree={t} saveVote={saveVote} saveComment={saveComment}></TreeLine>)
                             }
                         </ul>
                     </div>
