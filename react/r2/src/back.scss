@@ -23,4 +23,8 @@ body {
 div#modal {
   display: block;
   background-color: rgba($color: #000000, $alpha: 0.7);
+  .photo {
+    height: 122px;
+    width: auto;
+  }
 }

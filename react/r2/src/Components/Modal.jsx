@@ -6,6 +6,7 @@ function Modal({ setModalData, modalData, setEditData }) {
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
     const [id, setId] = useState('0');
+    const [remove, setRemove] = useState(false);
     const fileInput = useRef();
 
     const buttonHandler = () => {
@@ -20,7 +21,8 @@ function Modal({ setModalData, modalData, setEditData }) {
                         height,
                         type,
                         id,
-                        photo
+                        photo,
+                        del: remove ? 1 : 0
                     });
                     setModalData(null);
                 });
@@ -30,7 +32,8 @@ function Modal({ setModalData, modalData, setEditData }) {
                 height,
                 type,
                 id,
-                photo: null
+                photo: null,
+                del: remove ? 1 : 0
             });
             setModalData(null);
         }
@@ -111,6 +114,15 @@ function Modal({ setModalData, modalData, setEditData }) {
                                             <input ref={fileInput} type="file" className="form-control" />
                                             <small className="form-text text-muted">Tree photo.</small>
                                         </div>
+                                    </div>
+                                    <div className="col-2">
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" onChange={() => setRemove(r => !r)}  checked={remove} />
+                                                <label class="form-check-label">Delete Photo</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-10">
+                                        {modalData.photo ? <img className="photo" src={modalData.photo}></img> : null}
                                     </div>
 
                                 </div>
