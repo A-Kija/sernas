@@ -1,32 +1,52 @@
-import { useEffect, useState } from "react";
-function Modal({setModalData, modalData, setEditData}) {
+import { useEffect, useState, useRef } from "react";
+import getBase64 from "../Functions/getBase64";
+function Modal({ setModalData, modalData, setEditData }) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
     const [id, setId] = useState('0');
+    const fileInput = useRef();
 
     const buttonHandler = () => {
-        setEditData({
-            title,
-            height,
-            type,
-            id
-        });
-        setModalData(null);
+        const file = fileInput.current.files[0];
+
+        if (file) {
+            getBase64(file)
+                .then(photo => {
+                    console.log(photo);
+                    setEditData({
+                        title,
+                        height,
+                        type,
+                        id,
+                        photo
+                    });
+                    setModalData(null);
+                });
+        } else {
+            setEditData({
+                title,
+                height,
+                type,
+                id,
+                photo: null
+            });
+            setModalData(null);
+        }
     }
 
     const inputHandler = (e, which) => {
-        switch(which) {
-            case 'title': 
-            setTitle(e.target.value);
-            break;
-            case 'height': 
-            setHeight(e.target.value.replace(/,/g, '.'));
-            break;
-            case 'type': 
-            setType(e.target.value);
-            break;
+        switch (which) {
+            case 'title':
+                setTitle(e.target.value);
+                break;
+            case 'height':
+                setHeight(e.target.value.replace(/,/g, '.'));
+                break;
+            case 'type':
+                setType(e.target.value);
+                break;
             default:
         }
     }
@@ -85,6 +105,13 @@ function Modal({setModalData, modalData, setEditData}) {
                                             <small className="form-text text-muted">Tree type.</small>
                                         </div>
                                     </div>
+                                    <div className="col-12">
+                                        <div className="form-group">
+                                            <label>Photo</label>
+                                            <input ref={fileInput} type="file" className="form-control" />
+                                            <small className="form-text text-muted">Tree photo.</small>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -92,7 +119,7 @@ function Modal({setModalData, modalData, setEditData}) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Save</button>
-                        <button type="button" className="btn btn-outline-danger m-3"  onClick={() => setModalData(null)}>Cancel</button>
+                        <button type="button" className="btn btn-outline-danger m-3" onClick={() => setModalData(null)}>Cancel</button>
                     </div>
                 </div>
             </div>

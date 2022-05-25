@@ -52,14 +52,14 @@ function Front({ show }) {
     }
 
     const saveVote = (id, value) => {
-        axios.put('http://localhost:3003/trees-vote/' + id, {vote: value})
+        axios.post('http://localhost:3003/trees-vote/' + id, {vote: value})
         .then(res => {
             setLastUpdate(Date.now());
         });
     }
 
     const saveComment = (id, value) => {
-        axios.put('http://localhost:3003/trees-comment/' + id, {comment: value})
+        axios.post('http://localhost:3003/trees-comment/' + id, {comment: value})
         .then(res => {
             setLastUpdate(Date.now());
         });

@@ -32,6 +32,10 @@ function TreeLine({ tree, saveVote, saveComment }) {
                     <div className="form-group ml-4">
                         <textarea className="form-control" onChange={e => setComment(e.target.value)} value={comment} placeholder="Comment" />
                     </div>
+
+                    <div className="image-holder ml-4">
+                        <img src={tree.photo}></img>
+                    </div>
                     
                     
                     <div className="tree-line__content__comments">

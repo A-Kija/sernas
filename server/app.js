@@ -5,6 +5,9 @@ const cors = require("cors");
 app.use(cors());
 const mysql = require("mysql");
 
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
 app.use(
   express.urlencoded({
     extended: true,
@@ -48,7 +51,7 @@ app.get("/trees-manager", (req, res) => {
 app.get("/trees-list/all", (req, res) => {
   const sql = `
         SELECT
-        m.id AS id, m.name, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, k.id AS cid 
+        m.id AS id, m.photo, m.name, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, k.id AS cid 
         FROM medziai AS m
         LEFT JOIN komentarai AS k
         ON m.id = k.medziai_id
@@ -78,7 +81,7 @@ app.get("/trees-list-search", (req, res) => {
   });
 });
 
-app.put("/trees-vote/:id", (req, res) => {
+app.post("/trees-vote/:id", (req, res) => {
   const sql = `
         UPDATE medziai
         SET count = count + 1, sum = sum + ?
@@ -96,7 +99,7 @@ app.put("/trees-vote/:id", (req, res) => {
   );
 });
 
-app.put("/trees-comment/:id", (req, res) => {
+app.post("/trees-comment/:id", (req, res) => {
   const sql = `
     INSERT INTO komentarai
     (com, medziai_id)
@@ -175,13 +178,13 @@ app.post("/trees-manager", (req, res) => {
   // VALUES (value1, value2, value3, ...);
   const sql = `
         INSERT INTO medziai
-        (name, height, type)
-        VALUES (?, ?, ?)
+        (name, height, type, photo)
+        VALUES (?, ?, ?, ?)
     `;
 
   con.query(
     sql,
-    [req.body.title, !req.body.height ? 0 : req.body.height, req.body.type],
+    [req.body.title, !req.body.height ? 0 : req.body.height, req.body.type, req.body.photo],
     (err, results) => {
       if (err) {
         throw err;
