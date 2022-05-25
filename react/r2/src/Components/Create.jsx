@@ -1,33 +1,51 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import getBase64 from "../Functions/getBase64";
 
-function Create({setCreateData}) {
+function Create({ setCreateData }) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
+    const fileInput = useRef();
 
     const buttonHandler = () => {
-        setCreateData({
-            title,
-            height,
-            type
-        });
+        const file = fileInput.current.files[0];
+
+        if (file) {
+            getBase64(file)
+            .then(photo => {
+                console.log(photo);
+                setCreateData({
+                    title,
+                    height,
+                    type,
+                    photo
+                });
+            });
+        } else {
+            setCreateData({
+                title,
+                height,
+                type,
+                photo: null
+            });
+        }
         setTitle('');
         setHeight('');
         setType(1);
     }
 
     const inputHandler = (e, which) => {
-        switch(which) {
-            case 'title': 
-            setTitle(e.target.value);
-            break;
-            case 'height': 
-            setHeight(e.target.value.replace(/,/g, '.'));
-            break;
-            case 'type': 
-            setType(e.target.value);
-            break;
+        switch (which) {
+            case 'title':
+                setTitle(e.target.value);
+                break;
+            case 'height':
+                setHeight(e.target.value.replace(/,/g, '.'));
+                break;
+            case 'type':
+                setType(e.target.value);
+                break;
             default:
         }
     }
@@ -63,8 +81,15 @@ function Create({setCreateData}) {
                                 <small className="form-text text-muted">Tree type.</small>
                             </div>
                         </div>
+                        <div className="col-12">
+                            <div className="form-group">
+                                <label>Photo</label>
+                                <input ref={fileInput} type="file" className="form-control" />
+                                <small className="form-text text-muted">Tree photo.</small>
+                            </div>
+                        </div>
                         <div className="buttons">
-                        <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Add</button>
+                            <button type="button" className="btn btn-outline-primary m-3" onClick={buttonHandler}>Add</button>
                         </div>
                     </div>
                 </div>
