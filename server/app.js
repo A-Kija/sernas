@@ -49,6 +49,19 @@ res.send(result);
 });
 });
 
+app.get("/trees-sizes", (req, res) => {
+  const sql = `
+  SELECT
+  *
+  FROM dydziai
+`;
+con.query(sql, (err, result) => {
+if (err) throw err;
+res.send(result);
+
+});
+});
+
 // SELECT column_name(s)
 // FROM table1
 // LEFT JOIN table2
@@ -191,6 +204,27 @@ app.post("/trees-manager", (req, res) => {
   con.query(
     sql,
     [req.body.title, !req.body.height ? 0 : req.body.height, req.body.type, req.body.photo],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      res.send(results);
+    }
+  );
+});
+
+app.post("/trees-size", (req, res) => {
+  // INSERT INTO table_name (column1, column2, column3, ...)
+  // VALUES (value1, value2, value3, ...);
+  const sql = `
+        INSERT INTO dydziai
+        (size)
+        VALUES (?)
+    `;
+
+  con.query(
+    sql,
+    [req.body.size],
     (err, results) => {
       if (err) {
         throw err;

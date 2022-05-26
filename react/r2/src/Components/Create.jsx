@@ -1,27 +1,30 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import getBase64 from "../Functions/getBase64";
-
-function Create({ setCreateData }) {
+import axios from 'axios';
+function Create({ setCreateData, sizes }) {
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
+    const [size, setSize] = useState('0');
     const fileInput = useRef();
+
+
 
     const buttonHandler = () => {
         const file = fileInput.current.files[0];
 
         if (file) {
             getBase64(file)
-            .then(photo => {
-                console.log(photo);
-                setCreateData({
-                    title,
-                    height,
-                    type,
-                    photo
+                .then(photo => {
+                    console.log(photo);
+                    setCreateData({
+                        title,
+                        height,
+                        type,
+                        photo
+                    });
                 });
-            });
         } else {
             setCreateData({
                 title,
@@ -45,6 +48,9 @@ function Create({ setCreateData }) {
                 break;
             case 'type':
                 setType(e.target.value);
+                break;
+            case 'size':
+                setSize(e.target.value);
                 break;
             default:
         }
@@ -77,6 +83,17 @@ function Create({ setCreateData }) {
                                     <option value="1">Leaf</option>
                                     <option value="2">Spike</option>
                                     <option value="3">Palm</option>
+                                </select>
+                                <small className="form-text text-muted">Tree type.</small>
+                            </div>
+                        </div>
+                        <div className="col-8">
+                            <div className="form-group">
+                                <label>Tree Sizes</label>
+                                <select className="form-control" onChange={e => inputHandler(e, 'size')} value={size}>
+                                    {
+                                        sizes.map(s => <option key={s.id} value={s.id}>{s.size}</option>)
+                                    }
                                 </select>
                                 <small className="form-text text-muted">Tree type.</small>
                             </div>

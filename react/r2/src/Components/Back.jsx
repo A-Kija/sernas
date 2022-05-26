@@ -6,6 +6,8 @@ import '../back.scss';
 import Create from './Create';
 import TreeLine from './TreeLine';
 import Modal from './Modal';
+import CreateSize from './CreateSize';
+import SizeList from './SizeList';
 
 
 function Back() {
@@ -18,6 +20,18 @@ function Back() {
   const [editData, setEditData] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
   const [modalData, setModalData] = useState(null);
+
+  const [createSizeData, setCreateSizeData] = useState(null);
+
+  const [sizes, setSizes] = useState([]);
+
+  useEffect(() => {
+      axios.get('http://localhost:3003/trees-sizes')
+          .then(res => {
+              console.log(res.data);
+              setSizes(res.data);
+          })
+  }, [lastUpdate]);
 
   // Read
   useEffect(() => {
@@ -40,6 +54,18 @@ function Back() {
     });
 
   },[createData]);
+
+  useEffect(() => {
+    if (null === createSizeData) {
+      return;
+    }
+    axios.post('http://localhost:3003/trees-size', createSizeData)
+    .then(res => {
+      console.log(res);
+      setLastUpdate(Date.now());
+    });
+
+  },[createSizeData]);
 
   //Edit
   useEffect(() => {
@@ -82,7 +108,9 @@ function Back() {
     <div className="container">
       <div className="row">
         <div className="col-4">
-          <Create setCreateData={setCreateData}></Create>
+          <Create sizes={sizes} setCreateData={setCreateData} lastUpdate={lastUpdate}></Create>
+          <CreateSize setCreateSizeData={setCreateSizeData}></CreateSize>
+          <SizeList sizes={sizes}></SizeList>
         </div>
         <div className="col-8">
           <div className="card m-2">
