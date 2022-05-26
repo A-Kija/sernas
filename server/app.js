@@ -29,18 +29,24 @@ app.get("/", (req, res) => {
   res.send("Hello Barsukai!");
 });
 
+
+
+// **
+
 app.get("/trees-manager", (req, res) => {
-  // SELECT column1, column2, ...
-  // FROM table_name;
   const sql = `
-        SELECT
-        *
-        FROM medziai
-    `;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.json(result);
-  });
+  SELECT
+  m.id AS id, m.photo, m.name, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, GROUP_CONCAT(k.id) AS cid 
+  FROM medziai AS m
+  LEFT JOIN komentarai AS k
+  ON m.id = k.medziai_id
+  GROUP BY m.id
+`;
+con.query(sql, (err, result) => {
+if (err) throw err;
+res.send(result);
+
+});
 });
 
 // SELECT column_name(s)
@@ -89,7 +95,7 @@ app.post("/trees-vote/:id", (req, res) => {
     `;
   con.query(
     sql,
-    [req.body.vote, req.params.id],
+    [Math.max(Math.min(req.body.vote, 10), 1), req.params.id],
     (err, results) => {
       if (err) {
         throw err;
@@ -209,6 +215,21 @@ app.delete("/trees-manager/:id", (req, res) => {
   });
 });
 
+app.delete("/trees-delete-comment/:id", (req, res) => {
+  const sql = `
+        DELETE FROM komentarai
+        WHERE id = ?
+        `;
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+});
+
+
+
 // UPDATE table_name
 // SET column1 = value1, column2 = value2, ...
 // WHERE condition;
@@ -248,6 +269,7 @@ app.put("/trees-manager/:id", (req, res) => {
     }
   );
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

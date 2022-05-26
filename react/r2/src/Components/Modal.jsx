@@ -8,7 +8,7 @@ function Modal({ setModalData, modalData, setEditData }) {
     const [id, setId] = useState('0');
     const [remove, setRemove] = useState(false);
     const fileInput = useRef();
-
+    
     const buttonHandler = () => {
         const file = fileInput.current.files[0];
 
