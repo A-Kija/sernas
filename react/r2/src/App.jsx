@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Front from "./Components/Front";
 import LoginPage from "./Components/LoginPage";
 import LogoutPage from "./Components/LogoutPage";
-
+import RequireAuth from "./Components/RequireAuth";
 
 function App() {
 

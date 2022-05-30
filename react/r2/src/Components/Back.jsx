@@ -9,6 +9,7 @@ import Modal from './Modal';
 import CreateSize from './CreateSize';
 import SizeList from './SizeList';
 import { Link } from 'react-router-dom';
+import { authConfig } from '../Functions/auth';
 
 
 function Back() {
@@ -36,7 +37,7 @@ function Back() {
 
   // Read
   useEffect(() => {
-    axios.get('http://localhost:3003/trees-manager')
+    axios.get('http://localhost:3003/admin/trees-manager', authConfig())
       .then(res => {
         console.log(res.data);
         setTrees(res.data);
