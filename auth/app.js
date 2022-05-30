@@ -38,7 +38,7 @@ const doAuth = function(req, res, next) {
             (err, results) => {
                 if (err) throw err;
                 if (!results.length) {
-                    res.status(403).send({});
+                    res.status(401).send({});
                     req.connection.destroy();
                 } else {
                     next();
@@ -55,6 +55,7 @@ app.use(doAuth)
 app.get("/", (req, res) => {
     res.send("Hello Barsukai!");
 });
+
 
 app.get("/admin/hello", (req, res) => {
     res.send("Hello Admin!");
