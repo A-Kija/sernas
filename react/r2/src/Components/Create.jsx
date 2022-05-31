@@ -22,7 +22,8 @@ function Create({ setCreateData, sizes }) {
                         title,
                         height,
                         type,
-                        photo
+                        photo,
+                        size
                     });
                 });
         } else {
@@ -30,7 +31,8 @@ function Create({ setCreateData, sizes }) {
                 title,
                 height,
                 type,
-                photo: null
+                photo: null,
+                size
             });
         }
         setTitle('');

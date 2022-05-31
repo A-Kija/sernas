@@ -106,10 +106,12 @@ app.post("/login", (req, res) => {
 app.get("/admin/trees-manager", (req, res) => {
   const sql = `
   SELECT
-  m.id AS id, m.photo, m.name, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, GROUP_CONCAT(k.id) AS cid 
+  m.id AS id, m.photo, m.name, dj.size, m.height, m.type, m.count, m.sum, GROUP_CONCAT(k.com, '-^o^-') AS comments, GROUP_CONCAT(k.id) AS cid 
   FROM medziai AS m
   LEFT JOIN komentarai AS k
   ON m.id = k.medziai_id
+  LEFT JOIN dydziai as dj
+  ON m.dydziai_id = dj.id
   GROUP BY m.id
 `;
 con.query(sql, (err, result) => {
@@ -267,13 +269,13 @@ app.post("/trees-manager", (req, res) => {
   // VALUES (value1, value2, value3, ...);
   const sql = `
         INSERT INTO medziai
-        (name, height, type, photo)
-        VALUES (?, ?, ?, ?)
+        (name, height, type, photo, dydziai_id)
+        VALUES (?, ?, ?, ?, ?)
     `;
 
   con.query(
     sql,
-    [req.body.title, !req.body.height ? 0 : req.body.height, req.body.type, req.body.photo],
+    [req.body.title, !req.body.height ? 0 : req.body.height, req.body.type, req.body.photo, req.body.size],
     (err, results) => {
       if (err) {
         throw err;
@@ -319,6 +321,20 @@ app.delete("/trees-manager/:id", (req, res) => {
   });
 });
 
+
+app.delete("/trees-manager-sizes/:id", (req, res) => {
+  const sql = `
+        DELETE FROM dydziai
+        WHERE id = ?
+        `;
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+});
+
 app.delete("/trees-delete-comment/:id", (req, res) => {
   const sql = `
         DELETE FROM komentarai
@@ -343,10 +359,10 @@ app.put("/trees-manager/:id", (req, res) => {
     if('' === req.body.photo && req.body.del == 0) {
       sql = `
         UPDATE medziai
-        SET name = ?, type = ?, height = ?
+        SET name = ?, type = ?, height = ?, dydziai_id = ?
         WHERE id = ?
     `;
-      args = [req.body.title, req.body.type, req.body.height, req.params.id];
+      args = [req.body.title, req.body.type, req.body.height, req.body.size, req.params.id];
     } else if(1 == req.body.del) {
         sql = `
         UPDATE medziai

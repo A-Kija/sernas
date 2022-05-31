@@ -1,5 +1,5 @@
 
-function SizeList({sizes}) {
+function SizeList({sizes, setDeleteSizeId}) {
 
     return (
         <div className="card m-2">
@@ -13,6 +13,9 @@ function SizeList({sizes}) {
                         sizes.map(c => (
                             <li className="list-group-item" key={c.id}>
                                 {c.size}
+                                <div>
+                                <button type="button" className="btn btn-outline-danger mt-1" onClick={() => setDeleteSizeId(c)}>Delete</button>
+                                </div>
                             </li>
                         ))
                     }

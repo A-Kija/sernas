@@ -27,6 +27,9 @@ function Back() {
 
   const [sizes, setSizes] = useState([]);
 
+
+  const [deleteSizeId, setDeleteSizeId] = useState(null);
+
   useEffect(() => {
     axios.get('http://localhost:3003/trees-sizes')
       .then(res => {
@@ -95,6 +98,19 @@ function Back() {
 
   }, [deleteId])
 
+    //Delete SIZE
+    useEffect(() => {
+      if (null === deleteSizeId) {
+        return;
+      }
+      axios.delete('http://localhost:3003/trees-manager-sizes/' + deleteSizeId.id,)
+        .then(res => {
+          console.log(res);
+          setLastUpdate(Date.now());
+        });
+  
+    }, [deleteSizeId])
+
   const deleteComment = id => {
     axios.delete('http://localhost:3003/trees-delete-comment/' + id,)
       .then(res => {
@@ -119,7 +135,7 @@ function Back() {
           <div className="col-4">
             <Create sizes={sizes} setCreateData={setCreateData} lastUpdate={lastUpdate}></Create>
             <CreateSize setCreateSizeData={setCreateSizeData}></CreateSize>
-            <SizeList sizes={sizes}></SizeList>
+            <SizeList sizes={sizes} setDeleteSizeId={setDeleteSizeId}></SizeList>
           </div>
           <div className="col-8">
             <div className="card m-2">
@@ -137,7 +153,7 @@ function Back() {
           </div>
         </div>
       </div>
-      <Modal setEditData={setEditData} setModalData={setModalData} modalData={modalData}></Modal>
+      <Modal  sizes={sizes} setEditData={setEditData} setModalData={setModalData} modalData={modalData}></Modal>
     </>
   );
 }

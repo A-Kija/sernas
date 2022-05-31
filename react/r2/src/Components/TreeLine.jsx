@@ -5,6 +5,7 @@ function TreeLine({ tree, setDeleteId, setModalData, deleteComment }) {
             <div className="tree-line">
                 <div className="tree-line__content">
                     <span>{tree.name}</span>
+                    <span>{tree.size}</span>
                     <span>{tree.height} m</span>
                     <span>{['Leaf','Spike','Palm'][tree.type - 1]}</span>
                 </div>

@@ -1,14 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import getBase64 from "../Functions/getBase64";
-function Modal({ setModalData, modalData, setEditData }) {
+function Modal({ setModalData, modalData, setEditData, sizes }) {
+
+    
 
     const [title, setTitle] = useState('');
     const [height, setHeight] = useState('');
     const [type, setType] = useState('1');
     const [id, setId] = useState('0');
     const [remove, setRemove] = useState(false);
+    const [size, setSize] = useState('0');
     const fileInput = useRef();
-    
+
     const buttonHandler = () => {
         const file = fileInput.current.files[0];
 
@@ -21,6 +24,7 @@ function Modal({ setModalData, modalData, setEditData }) {
                         height,
                         type,
                         id,
+                        size,
                         photo,
                         del: remove ? 1 : 0
                     });
@@ -33,6 +37,7 @@ function Modal({ setModalData, modalData, setEditData }) {
                 height,
                 type,
                 id,
+                size,
                 photo: '',
                 del: remove ? 1 : 0
             });
@@ -52,19 +57,25 @@ function Modal({ setModalData, modalData, setEditData }) {
             case 'type':
                 setType(e.target.value);
                 break;
+            case 'size':
+                setSize(e.target.value);
+                break;
             default:
         }
     }
 
     useEffect(() => {
+        
         if (modalData === null) {
             setTitle('');
             setHeight('');
             setType(1);
         } else {
+            console.log(sizes)
             setTitle(modalData.name);
             setHeight(modalData.height);
             setType(modalData.type);
+            setSize(modalData.size);
             setId(modalData.id);
         }
     }, [modalData])
@@ -110,6 +121,17 @@ function Modal({ setModalData, modalData, setEditData }) {
                                             <small className="form-text text-muted">Tree type.</small>
                                         </div>
                                     </div>
+                                    <div className="col-8">
+                                        <div className="form-group">
+                                            <label>Tree Sizes</label>
+                                            <select className="form-control" onChange={e => inputHandler(e, 'size')} value={size}>
+                                                {
+                                                    sizes.map(s => <option key={s.id} value={s.id}>{s.size}</option>)
+                                                }
+                                            </select>
+                                            <small className="form-text text-muted">Tree type.</small>
+                                        </div>
+                                    </div>
                                     <div className="col-12">
                                         <div className="form-group">
                                             <label>Photo</label>
@@ -119,8 +141,8 @@ function Modal({ setModalData, modalData, setEditData }) {
                                     </div>
                                     <div className="col-2">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" onChange={() => setRemove(r => !r)}  checked={remove} />
-                                                <label class="form-check-label">Delete Photo</label>
+                                            <input type="checkbox" class="form-check-input" onChange={() => setRemove(r => !r)} checked={remove} />
+                                            <label class="form-check-label">Delete Photo</label>
                                         </div>
                                     </div>
                                     <div className="col-10">
