@@ -71,11 +71,10 @@ function Modal({ setModalData, modalData, setEditData, sizes }) {
             setHeight('');
             setType(1);
         } else {
-            console.log(sizes)
             setTitle(modalData.name);
             setHeight(modalData.height);
             setType(modalData.type);
-            setSize(modalData.size);
+            setSize(sizes.filter(s => s.size === modalData.size)[0].id);
             setId(modalData.id);
         }
     }, [modalData])
@@ -140,9 +139,9 @@ function Modal({ setModalData, modalData, setEditData, sizes }) {
                                         </div>
                                     </div>
                                     <div className="col-2">
-                                        <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" onChange={() => setRemove(r => !r)} checked={remove} />
-                                            <label class="form-check-label">Delete Photo</label>
+                                        <div className="form-group form-check">
+                                            <input type="checkbox" className="form-check-input" onChange={() => setRemove(r => !r)} checked={remove} />
+                                            <label className="form-check-label">Delete Photo</label>
                                         </div>
                                     </div>
                                     <div className="col-10">
